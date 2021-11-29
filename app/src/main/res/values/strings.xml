@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">MyAccount</string>
+    <string name="not_supported">Not Supported</string>
+
+    <string name="firstStart_tv_page1.1">船新版本</string>
+    <string name="firstStart_tv_page1.2">帐</string>
+    <string name="firstStart_tv_page1.3">全新适配Android 10，全面支持新特性</string>
+    <string name="firstStart_tv_page1.4">(如果你设置了自定义分类图标，可能需要重新设置)</string>
+    <string name="firstStart_tv_page2.1">Android 10</string>
+    <string name="firstStart_tv_page2.2">深色主题</string>
+    <string name="firstStart_tv_page2.3">更强隐私保护</string>
+    <string name="firstStart_tv_page2.4">更快的应用启动速度</string>
+    <string name="firstStart_tv_page2.5">等更多特性</string>
+    <string name="firstStart_tv_page3.1">无需权限</string>
+    <string name="firstStart_tv_page3.2">无需任何额外权限，更安全更保护隐私</string>
+    <string name="firstStart_tv_page3.3">(如果你设置了自定义分类图标，可能需要重新设置)</string>
+    <string name="firstStart_bt_end">完成</string>
+    <string name="normalStart_tv_title">只是一个账本</string>
+
+    <string name="index_tv_networth">净资产</string>
+    <string name="index_tv_monthlyIncome">本月收入</string>
+    <string name="index_tv_monthlyCost">本月支出</string>
+    
+    <string name="leftmenu_tv_index">首页</string>
+    <string name="leftmenu_tv_history">历史查看</string>
+    <string name="leftmenu_tv_analysis">分析统计</string>
+    <string name="leftmenu_tv_types">分类管理</string>
+    <string name="leftmenu_tv_accounts">账户管理</string>
+    <string name="leftmenu_tv_userpage">个人中心</string>
+    <string name="leftmenu_tv_more">更多</string>
+    <string name="leftmenu_tv_search">账目搜索</string>
+    <string name="leftmenu_tv_backup">立即备份</string>
+    <string name="leftmenu_tv_donate">捐赠作者</string>
+    <string name="leftmenu_tv_setting">设置</string>
+    <string name="leftmenu_tv_feedback">反馈和帮助</string>
 </resources>

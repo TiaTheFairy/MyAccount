@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAccount">
         <activity
-            android:name=".activity_login"
+            android:name=".p_startup.activity_firstStart"
             android:exported="true" />
         <activity
-            android:name=".activity_startup"
+            android:name=".activity_index"
+            android:exported="true" />
+        <activity
+            android:name=".p_startup.activity_normalStart"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,179 @@
+<HorizontalScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="#66CCFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="410dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page1.1"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page1.2"
+                android:textSize="50sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="140dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page1.3"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="150dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page1.4"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/3"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="80dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="410dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page2.1"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/firststart_q"
+                android:layout_marginTop="100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page2.2"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page2.3"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page2.4"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page2.5"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2/3"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="60dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="410dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page3.1"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/firststart_id"
+                android:layout_marginTop="100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page3.2"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="100dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_tv_page3.3"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"/>
+
+            <Button
+                android:id="@+id/firstStart_bt_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstStart_bt_end"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="end"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3/3"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="1dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</HorizontalScrollView>

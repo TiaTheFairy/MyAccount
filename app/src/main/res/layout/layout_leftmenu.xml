@@ -1,0 +1,345 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:id="@+id/leftmenu_lo_user"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingLeft="10dp"
+        android:background="#00BFFF">
+
+        <ImageView
+            android:id="@+id/leftmenu_iv_userpic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/userpic" />
+
+        <TextView
+            android:id="@+id/leftmenu_tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/leftmenu_iv_userpic"
+            android:text="username"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/leftmenu_tv_userbrief"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="userbrief"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:layout_below="@id/leftmenu_tv_username"
+            android:layout_toEndOf="@id/leftmenu_iv_userpic"
+            android:layout_marginStart="20dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFAFA"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp">
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_index"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_index"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_index"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_history"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_history"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_history"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_analysis"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_analysis"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_analysis"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_types"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_types"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_types"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_accounts"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_accounts"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_accounts"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_userpage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_userpage"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_userpage"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#A9A9A9"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/leftmenu_tv_more"
+        android:textSize="15sp"
+        android:background="#FFFAFA"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFAFA"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp">
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_search"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_search"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_backup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_backup"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_backup"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_donate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_donate"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_donate"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_settings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_settings"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_setting"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/leftmenu_lo_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/leftmenu_feedback"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leftmenu_tv_feedback"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
