@@ -4,13 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/activity_main.xml" value="0.35885416666666664" />
+        <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/holder_bills.xml" value="0.25" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/item_startup_page1.xml" value="0.2463768115942029" />
+        <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_createbill.xml" value="0.33" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_firstStart.xml" value="0.11666666666666667" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_firststart.xml" value="0.1838768115942029" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_index.xml" value="0.22" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_leftmenu.xml" value="0.33" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_login.xml" value="0.1203125" />
-        <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_normalstart.xml" value="0.35885416666666664" />
+        <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_normalstart.xml" value="0.33" />
         <entry key="..\:/System/Desktop/class/android/MyAccount/app/src/main/res/layout/layout_startup.xml" value="0.24282786885245902" />
       </map>
     </option>

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAccount">
         <activity
+            android:name=".activity_createBill"
+            android:exported="true" />
+        <activity
             android:name=".p_startup.activity_firstStart"
             android:exported="true" />
         <activity

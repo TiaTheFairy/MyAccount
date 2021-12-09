@@ -18,9 +18,9 @@
     <string name="normalStart_tv_title">只是一个账本</string>
 
     <string name="index_tv_networth">净资产</string>
-    <string name="index_tv_monthlyIncome">本月收入</string>
-    <string name="index_tv_monthlyCost">本月支出</string>
-    
+    <string name="index_tv_income">总收入</string>
+    <string name="index_tv_expense">总支出</string>
+
     <string name="leftmenu_tv_index">首页</string>
     <string name="leftmenu_tv_history">历史查看</string>
     <string name="leftmenu_tv_analysis">分析统计</string>
@@ -33,4 +33,35 @@
     <string name="leftmenu_tv_donate">捐赠作者</string>
     <string name="leftmenu_tv_setting">设置</string>
     <string name="leftmenu_tv_feedback">反馈和帮助</string>
+    
+    <string name="createbill_tv_incomeandexpense">收支</string>
+    <string name="createbill_tv_transfer">转账</string>
+    <string name="createbill_tv_createagain">再记一笔</string>
+    <string name="createbill_bt_income">收入</string>
+    <string name="createbill_bt_expense">支出</string>
+    <string name="createbill_bt_note">写备注</string>
+    <string name="createbill_bt_save">保存</string>
+
+    <string name="billtype_default">其他</string>
+    <string name="billtype_food">吃喝饮食</string>
+    <string name="billtype_traffic">交通出行</string>
+    <string name="billtype_phone">通讯费用</string>
+    <string name="billtype_debt">欠债借款</string>
+    <string name="billtype_gift">人情礼物</string>
+    <string name="billtype_house">房租水电</string>
+    <string name="billtype_medical">医疗费用</string>
+    <string name="billtype_redpacket">社交红包</string>
+    <string name="billtype_shopping">逛街购物</string>
+    <string name="billtype_sport">运动健身</string>
+    <string name="billtype_wage">工资薪水</string>
+    <string name="billtype_daily">日常用品</string>
+    <string name="billtype_party">聚会聚餐</string>
+    <string name="billtype_stonk">基金理财</string>
+    <string name="billtype_travel">旅行购物</string>
+
+    <string name="accounttype_cash">现金</string>
+    <string name="accounttype_wechat">微信</string>
+    <string name="accounttype_alipay">支付宝</string>
+    
+    
 </resources>

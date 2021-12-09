@@ -1,76 +1,87 @@
 package com.LiYueZhe2019054505.myaccount.datas;
 
 public class Bills {
-    private String type;
-    private String method;
-    private int direction;
-    private int account;
-    private int year;
-    private int month;
-    private int day;
-    private String note;
+    private String billDirection;
+    private String billType;
+    private String billMethod;
+    private String billNote;
+    private double billAmount;
+    private int billYear;
+    private int billMonth;
+    private int billDay;
 
-    public String getType() {
-        return type;
+    public Bills(String billDirection, String billType, String billMethod, String billNote, double billAmount, int billYear, int billMonth, int billDay) {
+        this.billDirection = billDirection;
+        this.billType = billType;
+        this.billMethod = billMethod;
+        this.billNote = billNote;
+        this.billAmount = billAmount;
+        this.billYear = billYear;
+        this.billMonth = billMonth;
+        this.billDay = billDay;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getBillDirection() {
+        return billDirection;
     }
 
-    public String getMethod() {
-        return method;
+    public void setBillDirection(String billDirection) {
+        this.billDirection = billDirection;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public String getBillType() {
+        return billType;
     }
 
-    public int getDirection() {
-        return direction;
+    public void setBillType(String billType) {
+        this.billType = billType;
     }
 
-    public void setDirection(int direction) {
-        this.direction = direction;
+    public String getBillMethod() {
+        return billMethod;
     }
 
-    public int getAccount() {
-        return account;
+    public void setBillMethod(String billMethod) {
+        this.billMethod = billMethod;
     }
 
-    public void setAccount(int account) {
-        this.account = account;
+    public String getBillNote() {
+        return billNote;
     }
 
-    public int getYear() {
-        return year;
+    public void setBillNote(String billNote) {
+        this.billNote = billNote;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public double getBillAmount() {
+        return billAmount;
     }
 
-    public int getMonth() {
-        return month;
+    public void setBillAmount(double billAmount) {
+        this.billAmount = billAmount;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
+    public int getBillYear() {
+        return billYear;
     }
 
-    public int getDay() {
-        return day;
+    public void setBillYear(int billYear) {
+        this.billYear = billYear;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public int getBillMonth() {
+        return billMonth;
     }
 
-    public String getNote() {
-        return note;
+    public void setBillMonth(int billMonth) {
+        this.billMonth = billMonth;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public int getBillDay() {
+        return billDay;
+    }
+
+    public void setBillDay(int billDay) {
+        this.billDay = billDay;
     }
 }

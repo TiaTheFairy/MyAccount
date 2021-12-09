@@ -1,58 +1,58 @@
 package com.LiYueZhe2019054505.myaccount.datas;
 
 public class Accounts {
-    private int networth;
-    private int monthlyIncome;
-    private int monthlyCost;
-    private int cash;
-    private int wechat;
-    private int alipay;
+    private double networth;
+    private double income;
+    private double expense;
+    private double cash;
+    private double wechat;
+    private double alipay;
 
-    public int getNetworth() {
+    public double getNetworth() {
         return networth;
     }
 
-    public void setNetworth(int networth) {
+    public void setNetworth(double networth) {
         this.networth = networth;
     }
 
-    public int getMonthlyIncome() {
-        return monthlyIncome;
+    public double getIncome() {
+        return income;
     }
 
-    public void setMonthlyIncome(int monthlyIncome) {
-        this.monthlyIncome = monthlyIncome;
+    public void setIncome(double income) {
+        this.income = income;
     }
 
-    public int getMonthlyCost() {
-        return monthlyCost;
+    public double getExpense() {
+        return expense;
     }
 
-    public void setMonthlyCost(int monthlyCost) {
-        this.monthlyCost = monthlyCost;
+    public void setExpense(double expense) {
+        this.expense = expense;
     }
 
-    public int getCash() {
+    public double getCash() {
         return cash;
     }
 
-    public void setCash(int cash) {
+    public void setCash(double cash) {
         this.cash = cash;
     }
 
-    public int getWechat() {
+    public double getWechat() {
         return wechat;
     }
 
-    public void setWechat(int wechat) {
+    public void setWechat(double wechat) {
         this.wechat = wechat;
     }
 
-    public int getAlipay() {
+    public double getAlipay() {
         return alipay;
     }
 
-    public void setAlipay(int alipay) {
+    public void setAlipay(double alipay) {
         this.alipay = alipay;
     }
 }
