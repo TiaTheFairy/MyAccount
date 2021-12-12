@@ -41,6 +41,7 @@
     <string name="createbill_bt_expense">支出</string>
     <string name="createbill_bt_note">写备注</string>
     <string name="createbill_bt_save">保存</string>
+    <string name="createbill_toast_empty">记账金额应为一个正数</string>
 
     <string name="billtype_default">其他</string>
     <string name="billtype_food">吃喝饮食</string>
@@ -56,12 +57,15 @@
     <string name="billtype_wage">工资薪水</string>
     <string name="billtype_daily">日常用品</string>
     <string name="billtype_party">聚会聚餐</string>
-    <string name="billtype_stonk">基金理财</string>
-    <string name="billtype_travel">旅行购物</string>
+    <string name="billtype_stock">基金理财</string>
+    <string name="billtype_travel">旅行旅游</string>
 
     <string name="accounttype_cash">现金</string>
     <string name="accounttype_wechat">微信</string>
     <string name="accounttype_alipay">支付宝</string>
-    
-    
+
+    <string name="longclick_tv_remove">删除</string>
+    <string name="longclick_tv_detail">详情</string>
+    <string name="longclick_tv_edit">修改</string>
+    <string name="longclick_tv_refresh">刷新</string>
 </resources>

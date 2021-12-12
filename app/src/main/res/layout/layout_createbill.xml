@@ -1,37 +1,706 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/create_ll_toptip"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="10dp"
-        android:background="#87CEFA">
+        android:background="#1E90FF">
 
         <ImageView
-            android:id="@+id/index_iv_menu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/global_return"
+            android:id="@+id/create_iv_return"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/global_return"
+            android:layout_marginEnd="120dp"/>
+
+        <TextView
+            android:id="@+id/create_tv_ie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createbill_tv_incomeandexpense"
+            android:textSize="20sp"
+            android:textColor="#F8F8FF"
             android:layout_marginEnd="20dp"/>
 
         <TextView
+            android:id="@+id/create_tv_transfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/createbill_tv_transfer"
             android:textSize="20sp"
             android:textColor="#F8F8FF"
-            android:layout_marginEnd="200dp"/>
+            android:layout_marginEnd="90dp"/>
 
-        <ImageView
-            android:id="@+id/index_iv_share"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:src="@mipmap/index_share"/>
+        <TextView
+            android:id="@+id/create_tv_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createbill_tv_createagain"
+            android:textSize="15sp"
+            android:textColor="#F8F8FF"/>
 
     </LinearLayout>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/create_rl_preview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="15dp"
+        android:background="#87CEFA"
+        android:layout_marginBottom="12dp"
+        android:layout_below="@id/create_ll_toptip">
+
+        <TextView
+            android:id="@+id/create_tv_billtype"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/billtype_default"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/create_tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:text="0.00"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/create_ll_line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:layout_below="@id/create_rl_preview">
+
+        <LinearLayout
+            android:id="@+id/create_type_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="updateRadio">
+
+            <ImageView
+                android:id="@+id/create_iv_default"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_default"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_default"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_food"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="updateRadio">
+
+            <ImageView
+                android:id="@+id/create_iv_food"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_food"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_food"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_traffic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="updateRadio">
+
+            <ImageView
+                android:id="@+id/create_iv_traffic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_traffic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_traffic"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="updateRadio">
+
+            <ImageView
+                android:id="@+id/create_iv_phone"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_phone"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/create_ll_line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:layout_below="@id/create_ll_line1">
+        
+        <LinearLayout
+            android:id="@+id/create_type_debt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="updateRadio">
+
+            <ImageView
+                android:id="@+id/create_iv_debt"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_debt"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_debt"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/create_type_gift"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_gift"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_gift"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_gift"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_house"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_house"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_house"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_house"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_medical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_medical"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_medical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_medical"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/create_ll_line3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:layout_below="@id/create_ll_line2">
+
+        <LinearLayout
+            android:id="@+id/create_type_redpacket"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_redpacket"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_redpacket"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_redpacket"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_shopping"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_shopping"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_shopping"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_shopping"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/create_type_sport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_sport"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_sport"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_sport"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_wage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_wage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_wage"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_wage"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/create_ll_line3">
+        
+        <LinearLayout
+            android:id="@+id/create_type_daily"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_daily"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_daily"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_daily"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_party"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_party"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_party"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_party"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/create_type_stock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_stock"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_stock"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_stock"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/create_type_travel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="updateRadio"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/create_iv_travel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bill_travel"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/billtype_travel"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/create_rl_tooltip"
+        android:background="#C0C0C0" />
+
+    <RelativeLayout
+        android:id="@+id/create_rl_tooltip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
+        android:layout_above="@id/create_gl_keyboard">
+
+        <Button
+            android:id="@+id/create_bt_direction"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bt_keyboardtooltip"
+            android:text="@string/createbill_bt_expense" />
+
+        <Button
+            android:id="@+id/create_bt_method"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@id/create_bt_direction"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bt_keyboardtooltip"
+            android:text="@string/accounttype_cash" />
+
+        <Button
+            android:id="@+id/create_bt_time"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@id/create_bt_method"
+            android:background="@drawable/bt_keyboardtooltip"
+            android:text="2021-12-12" />
+
+        <Button
+            android:id="@+id/create_bt_note"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bt_keyboardtooltip"
+            android:text="@string/createbill_bt_note" />
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:id="@+id/create_gl_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/create_key_1"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="1"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_2"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="2"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_3"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="3"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_plus"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="+"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_4"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="4"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_5"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="5"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_6"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="6"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_sub"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="-"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_7"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="7"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_8"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="8"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_9"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="9"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_mul"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="*"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_dot"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="."
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_0"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="0"
+            android:textSize="20sp"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <ImageButton
+            android:id="@+id/create_key_delete"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:src="@drawable/keyboard_delete"
+            android:scaleType="fitCenter"
+            android:onClick="keyboardDown"
+            android:background="@drawable/bt_keys"/>
+
+        <Button
+            android:id="@+id/create_key_save"
+            android:layout_width="103dp"
+            android:layout_height="50dp"
+            android:text="@string/createbill_bt_save"
+            android:textSize="20sp"
+            android:background="@drawable/bt_keys"/>
+
+    </GridLayout>
+
+</RelativeLayout>

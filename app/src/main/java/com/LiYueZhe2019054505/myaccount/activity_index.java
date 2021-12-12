@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,19 +25,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.LiYueZhe2019054505.myaccount.datas.Accounts;
 import com.LiYueZhe2019054505.myaccount.datas.Bills;
+import com.LiYueZhe2019054505.myaccount.datas.DataBank;
 import com.LiYueZhe2019054505.myaccount.p_startup.activity_firstStart;
 import com.LiYueZhe2019054505.myaccount.p_startup.activity_normalStart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class activity_index extends AppCompatActivity {
 
-    public static final int RESULT_CODE_GET_BILL = 500;
+    public static final int RESULT_CODE_CREATE_BILL = 500;
     private List<Bills> billsList;
+    private DataBank dataBank;
+    private Accounts accounts;
     private MyRecyclerViewAdapter recyclerViewAdapter;
 
     private ImageView index_iv_menu;
@@ -50,7 +57,7 @@ public class activity_index extends AppCompatActivity {
         public void onActivityResult(ActivityResult result) {
             Intent data = result.getData();
             int resultCode = result.getResultCode();
-            if(resultCode == RESULT_CODE_GET_BILL) {
+            if(resultCode == RESULT_CODE_CREATE_BILL) {
                 if (null == data) return;
                 String direction = data.getStringExtra("direction");
                 String type = data.getStringExtra("type");
@@ -63,22 +70,36 @@ public class activity_index extends AppCompatActivity {
                 int position = data.getIntExtra("position", billsList.size());
 
                 billsList.add(position, new Bills(direction, type, method, note, amount, year, month, day));
+                dataBank.saveData();
                 recyclerViewAdapter.notifyItemInserted(position);
             }
         }
     });
 
     //=====================================================初始化和onCreate=====================================================
+    public void initData(){
+        dataBank = new DataBank(activity_index.this);
+        billsList = dataBank.loadBills();
+        accounts = dataBank.loadAccounts();
+        /*
+        billsList = new ArrayList<Bills>();
+        billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
+        billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
+        billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
+         */
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(0x80000000, 0x80000000);
         setContentView(R.layout.layout_index);
 
+        initData();
+
         index_iv_menu = findViewById(R.id.index_iv_menu);
         index_iv_share = findViewById(R.id.index_iv_share);
         index_bt_create = findViewById(R.id.index_bt_create);
-
 
         RecyclerView mainRecyclerView = findViewById(R.id.index_rv_main);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -105,7 +126,7 @@ public class activity_index extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_index.this, activity_createBill.class);
-                intent.putExtra("position", billsList.size());
+                intent.putExtra("position", 10);
                 launcherAdd.launch(intent);
             }
         });
@@ -131,33 +152,87 @@ public class activity_index extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull MyRecyclerViewAdapter.MyViewHolder holder, int position){
 
+            holder.getBillType().setText(billsList.get(position).getBillType());
+            holder.getBillAccount().setText(billsList.get(position).getBillMethod());
+            //holder.getBillAmount().setText(toString(billsList.get(position).getBillAmount()));
+
+
+
         }
 
         @Override
         public int getItemCount(){
-            //return billsList.size();
-            return 10;
+            return billsList.size();
         }
 
         private class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+            public static final int LIST_REMOVE = 1;
+            public static final int LIST_DETAIL = 2;
+            public static final int LIST_EDIT = 3;
+            public static final int LIST_REFRESH = 4;
 
+            private final ImageView billImage;
+            private final TextView billType;
+            private final TextView billAccount;
+            private final TextView billAmount;
 
             public MyViewHolder(View itemView){
                 super(itemView);
 
+                this.billImage = itemView.findViewById(R.id.bill_iv_type);
+                this.billType = itemView.findViewById(R.id.bill_tv_type);
+                this.billAccount = itemView.findViewById(R.id.bill_tv_account);
+                this.billAmount = itemView.findViewById(R.id.bill_tv_amount);
 
                 itemView.setOnCreateContextMenuListener(this);
             }
 
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                return false;
+            public ImageView getBillImage(){
+                return billImage;
+            }
+
+            public TextView getBillType() {
+                return billType;
+            }
+
+            public TextView getBillAccount() {
+                return billAccount;
+            }
+
+            public TextView getBillAmount() {
+                return billAmount;
             }
 
             @Override
             public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                MenuItem menuItemRemove = contextMenu.add(Menu.NONE, LIST_REMOVE, LIST_REMOVE, getString(R.string.longclick_tv_remove));
+                MenuItem menuItemDetail = contextMenu.add(Menu.NONE, LIST_DETAIL, LIST_DETAIL, getString(R.string.longclick_tv_detail));
+                MenuItem menuItemEdit = contextMenu.add(Menu.NONE, LIST_EDIT, LIST_EDIT, getString(R.string.longclick_tv_edit));
+                MenuItem menuItemRefresh = contextMenu.add(Menu.NONE, LIST_REFRESH, LIST_REFRESH, getString(R.string.longclick_tv_refresh));
 
+                menuItemRemove.setOnMenuItemClickListener(this);
+                menuItemDetail.setOnMenuItemClickListener(this);
+                menuItemEdit.setOnMenuItemClickListener(this);
+                menuItemRefresh.setOnMenuItemClickListener(this);
             }
+
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                int position = getAdapterPosition();
+                Intent intent;
+                switch (menuItem.getItemId()){
+                    case LIST_REMOVE:
+                        break;
+                    case LIST_DETAIL:
+                        break;
+                    case LIST_EDIT:
+                        break;
+                    case LIST_REFRESH:
+                        break;
+                }
+                return false;
+            }
+
         }
     }
     //=====================================================左侧弹出菜单=====================================================

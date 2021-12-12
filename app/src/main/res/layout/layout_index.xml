@@ -23,7 +23,7 @@
                 android:id="@+id/index_iv_menu"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/index_menu"
+                android:src="@drawable/index_menu"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
@@ -38,7 +38,7 @@
                 android:id="@+id/index_iv_share"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
-                android:src="@mipmap/index_share"/>
+                android:src="@drawable/index_share"/>
 
         </LinearLayout>
 
@@ -132,7 +132,7 @@
             android:id="@+id/index_bt_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/index_new"
+            android:src="@drawable/index_new"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

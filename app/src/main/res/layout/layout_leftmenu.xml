@@ -18,7 +18,7 @@
             android:id="@+id/leftmenu_iv_userpic"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/userpic" />
+            android:src="@drawable/userpic" />
 
         <TextView
             android:id="@+id/leftmenu_tv_username"
@@ -65,7 +65,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_index"/>
+                android:src="@drawable/leftmenu_index"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_history"/>
+                android:src="@drawable/leftmenu_history"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -113,7 +113,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_analysis"/>
+                android:src="@drawable/leftmenu_analysis"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -137,7 +137,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_types"/>
+                android:src="@drawable/leftmenu_types"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -161,7 +161,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_accounts"/>
+                android:src="@drawable/leftmenu_accounts"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -185,7 +185,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_userpage"/>
+                android:src="@drawable/leftmenu_userpage"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -233,7 +233,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_search"/>
+                android:src="@drawable/leftmenu_search"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -257,7 +257,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_backup"/>
+                android:src="@drawable/leftmenu_backup"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -281,7 +281,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_donate"/>
+                android:src="@drawable/leftmenu_donate"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -305,7 +305,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_settings"/>
+                android:src="@drawable/leftmenu_settings"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -329,7 +329,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/leftmenu_feedback"/>
+                android:src="@drawable/leftmenu_feedback"/>
 
             <TextView
                 android:layout_width="match_parent"
