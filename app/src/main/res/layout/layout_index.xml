@@ -75,7 +75,8 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_marginStart="40dp">
+                android:layout_weight="1"
+                android:layout_marginEnd="40dp">
 
                 <TextView
                     android:id="@+id/index_tv_monthlyIncome"
@@ -98,7 +99,7 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_marginStart="150dp">
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/index_tv_monthlyCost"
@@ -119,8 +120,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/index_rv_main"
@@ -128,12 +128,11 @@
             android:layout_height="match_parent"
             android:clickable="true"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/index_bt_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/index_iv_create"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/index_new"
-            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

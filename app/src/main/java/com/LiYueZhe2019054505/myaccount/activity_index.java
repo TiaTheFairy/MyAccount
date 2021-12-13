@@ -37,45 +37,90 @@ import java.util.List;
 
 public class activity_index extends AppCompatActivity {
 
-    public static final int RESULT_CODE_CREATE_BILL = 500;
+    public static final int RESULT_CODE_TOUCH = 500;
+
     private List<Bills> billsList;
     private DataBank dataBank;
-    private Accounts accounts;
     private MyRecyclerViewAdapter recyclerViewAdapter;
 
     private ImageView index_iv_menu;
     private ImageView index_iv_share;
-    private FloatingActionButton index_bt_create;
+    private ImageView index_iv_create;
     private PopupWindow popup_left;
 
-    //=====================================================新增和修改账单=====================================================
+    //=====================================================新增、修改、查看账单=====================================================
     ActivityResultLauncher<Intent> launcherAdd = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
             Intent data = result.getData();
             int resultCode = result.getResultCode();
-            if(resultCode == RESULT_CODE_CREATE_BILL) {
+            if(resultCode == RESULT_CODE_TOUCH) {
                 if (null == data) return;
                 String direction = data.getStringExtra("direction");
                 String type = data.getStringExtra("type");
-                String method = data.getStringExtra("method");
+                String account = data.getStringExtra("account");
                 String note = data.getStringExtra("note");
                 double amount = data.getDoubleExtra("amount", 0);
                 String time = data.getStringExtra("time");
                 int position = data.getIntExtra("position", billsList.size());
 
-                billsList.add(position, new Bills(direction, type, method, note, amount, time));
-                dataBank.saveData();
+                billsList.add(position, new Bills(direction, type, account, note, amount, time));
+
                 recyclerViewAdapter.notifyItemInserted(position);
             }
         }
     });
 
+    ActivityResultLauncher<Intent> launcherEdit = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            Intent data = result.getData();
+            int resultCode = result.getResultCode();
+            if(resultCode == RESULT_CODE_TOUCH) {
+                if (null == data) return;
+                String direction = data.getStringExtra("direction");
+                String type = data.getStringExtra("type");
+                String account = data.getStringExtra("account");
+                String note = data.getStringExtra("note");
+                double amount = data.getDoubleExtra("amount", 0);
+                String time = data.getStringExtra("time");
+                int position = data.getIntExtra("position", billsList.size());
+
+                billsList.get(position).setBillDirection(direction);
+                billsList.get(position).setBillType(type);
+                billsList.get(position).setBillAccount(account);
+                billsList.get(position).setBillNote(note);
+                billsList.get(position).setBillAmount(amount);
+                billsList.get(position).setBillTime(time);
+
+                recyclerViewAdapter.notifyItemChanged(position);
+            }
+        }
+    });
+
+    ActivityResultLauncher<Intent> launcherView = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            Intent data = result.getData();
+            int resultCode = result.getResultCode();
+            if(resultCode == RESULT_CODE_TOUCH) {
+                if (null == data) return;
+                String direction = data.getStringExtra("direction");
+                String type = data.getStringExtra("type");
+                String account = data.getStringExtra("account");
+                String note = data.getStringExtra("note");
+                double amount = data.getDoubleExtra("amount", 0);
+                String time = data.getStringExtra("time");
+                int position = data.getIntExtra("position", billsList.size());
+            }
+        }
+    });
     //=====================================================初始化和onCreate=====================================================
     public void initData(){
         dataBank = new DataBank(activity_index.this);
         billsList = dataBank.loadBills();
-        accounts = dataBank.loadAccounts();
+        //accounts = dataBank.loadAccounts();
+
         /*
         billsList = new ArrayList<Bills>();
         billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
@@ -94,7 +139,7 @@ public class activity_index extends AppCompatActivity {
 
         index_iv_menu = findViewById(R.id.index_iv_menu);
         index_iv_share = findViewById(R.id.index_iv_share);
-        index_bt_create = findViewById(R.id.index_bt_create);
+        index_iv_create = findViewById(R.id.index_iv_create);
 
         RecyclerView mainRecyclerView = findViewById(R.id.index_rv_main);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -117,11 +162,11 @@ public class activity_index extends AppCompatActivity {
             }
         });
 
-        index_bt_create.setOnClickListener(new View.OnClickListener() {
+        index_iv_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity_index.this, activity_createBill.class);
-                intent.putExtra("position", 10);
+                intent.putExtra("position", billsList.size());
                 launcherAdd.launch(intent);
             }
         });
@@ -145,11 +190,62 @@ public class activity_index extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyRecyclerViewAdapter.MyViewHolder holder, int position){
+            if(getString(R.string.billtype_default).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_default);
+            }
+            else if(getString(R.string.billtype_food).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_food);
+            }
+            if(getString(R.string.billtype_traffic).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_traffic);
+            }
+            else if(getString(R.string.billtype_phone).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_phone);
+            }
+            else if(getString(R.string.billtype_debt).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_debt);
+            }
+            else if(getString(R.string.billtype_gift).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_gift);
+            }
+            else if(getString(R.string.billtype_house).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_house);
+            }
+            else if(getString(R.string.billtype_medical).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_medical);
+            }
+            else if(getString(R.string.billtype_redpacket).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_redpacket);
+            }
+            else if(getString(R.string.billtype_shopping).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_shopping);
+            }
+            else if(getString(R.string.billtype_sport).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_sport);
+            }
+            else if(getString(R.string.billtype_wage).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_wage);
+            }
+            else if(getString(R.string.billtype_daily).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_daily);
+            }
+            else if(getString(R.string.billtype_party).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_party);
+            }
+            else if(getString(R.string.billtype_stock).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_stock);
+            }
+            else if(getString(R.string.billtype_travel).equals(billsList.get(position).getBillType())){
+                holder.getBillImage().setImageResource(R.drawable.bill_travel);
+            }
 
             holder.getBillType().setText(billsList.get(position).getBillType());
-            holder.getBillAccount().setText(billsList.get(position).getBillMethod());
-            holder.getBillAmount().setText((billsList.get(position).getBillAmount()) + "");
-
+            holder.getBillAccount().setText(billsList.get(position).getBillAccount());
+            String billAmount = billsList.get(position).getBillAmount() + "";
+            if(billAmount.length() - billAmount.indexOf(".") == 2){
+                billAmount += "0";
+            }
+            holder.getBillAmount().setText(billAmount);
         }
 
         @Override
@@ -214,10 +310,30 @@ public class activity_index extends AppCompatActivity {
                 Intent intent;
                 switch (menuItem.getItemId()){
                     case LIST_REMOVE:
+                        billsList.remove(position);
+                        MyRecyclerViewAdapter.this.notifyItemRemoved(position);
                         break;
                     case LIST_DETAIL:
+                        intent = new Intent(activity_index.this, activity_detail.class);
+                        intent.putExtra("position", position);
+                        intent.putExtra("direction", billsList.get(position).getBillDirection());
+                        intent.putExtra("type", billsList.get(position).getBillType());
+                        intent.putExtra("account", billsList.get(position).getBillAccount());
+                        intent.putExtra("note", billsList.get(position).getBillNote());
+                        intent.putExtra("amount", billsList.get(position).getBillAmount());
+                        intent.putExtra("time", billsList.get(position).getBillTime());
+                        launcherView.launch(intent);
                         break;
                     case LIST_EDIT:
+                        intent = new Intent(activity_index.this, activity_createBill.class);
+                        intent.putExtra("position", position);
+                        intent.putExtra("direction", billsList.get(position).getBillDirection());
+                        intent.putExtra("type", billsList.get(position).getBillType());
+                        intent.putExtra("account", billsList.get(position).getBillAccount());
+                        intent.putExtra("note", billsList.get(position).getBillNote());
+                        intent.putExtra("amount", billsList.get(position).getBillAmount());
+                        intent.putExtra("time", billsList.get(position).getBillTime());
+                        launcherEdit.launch(intent);
                         break;
                     case LIST_REFRESH:
                         break;
@@ -264,5 +380,4 @@ public class activity_index extends AppCompatActivity {
             initLeftPopup();
         }
     }
-
 }

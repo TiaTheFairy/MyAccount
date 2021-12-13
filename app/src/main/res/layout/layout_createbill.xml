@@ -9,43 +9,43 @@
         android:id="@+id/create_ll_toptip"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
+        android:background="#1E90FF"
         android:gravity="center_vertical"
-        android:paddingHorizontal="10dp"
-        android:background="#1E90FF">
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp">
 
         <ImageView
             android:id="@+id/create_iv_return"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/global_return"
-            android:layout_marginEnd="120dp"/>
+            android:layout_marginEnd="120dp"
+            android:src="@drawable/global_return" />
 
         <TextView
             android:id="@+id/create_tv_ie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:text="@string/createbill_tv_incomeandexpense"
-            android:textSize="20sp"
             android:textColor="#F8F8FF"
-            android:layout_marginEnd="20dp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/create_tv_transfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="90dp"
             android:text="@string/createbill_tv_transfer"
-            android:textSize="20sp"
             android:textColor="#F8F8FF"
-            android:layout_marginEnd="90dp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/create_tv_again"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/createbill_tv_createagain"
-            android:textSize="15sp"
-            android:textColor="#F8F8FF"/>
+            android:textColor="#F8F8FF"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -524,11 +524,11 @@
             android:text="@string/createbill_bt_expense" />
 
         <Button
-            android:id="@+id/create_bt_method"
+            android:id="@+id/create_bt_account"
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:layout_toEndOf="@id/create_bt_direction"
             android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/create_bt_direction"
             android:background="@drawable/bt_keyboardtooltip"
             android:text="@string/accounttype_cash" />
 
@@ -536,7 +536,7 @@
             android:id="@+id/create_bt_time"
             android:layout_width="90dp"
             android:layout_height="30dp"
-            android:layout_toEndOf="@id/create_bt_method"
+            android:layout_toEndOf="@id/create_bt_account"
             android:background="@drawable/bt_keyboardtooltip"
             android:text="2021-12-12" />
 

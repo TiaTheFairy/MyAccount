@@ -3,12 +3,16 @@
     package="com.LiYueZhe2019054505.myaccount">
 
     <application
+        android:name=".datas.Accounts"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAccount">
+        <activity
+            android:name=".activity_detail"
+            android:exported="true" />
         <activity
             android:name=".activity_createBill"
             android:exported="true" />

@@ -3,15 +3,15 @@ package com.LiYueZhe2019054505.myaccount.datas;
 public class Bills {
     private String billDirection;
     private String billType;
-    private String billMethod;
+    private String billAccount;
     private String billNote;
     private double billAmount;
     private String billTime;
 
-    public Bills(String billDirection, String billType, String billMethod, String billNote, double billAmount, String billTime) {
+    public Bills(String billDirection, String billType, String billAccount, String billNote, double billAmount, String billTime) {
         this.billDirection = billDirection;
         this.billType = billType;
-        this.billMethod = billMethod;
+        this.billAccount = billAccount;
         this.billNote = billNote;
         this.billAmount = billAmount;
         this.billTime = billTime;
@@ -33,12 +33,12 @@ public class Bills {
         this.billType = billType;
     }
 
-    public String getBillMethod() {
-        return billMethod;
+    public String getBillAccount() {
+        return billAccount;
     }
 
-    public void setBillMethod(String billMethod) {
-        this.billMethod = billMethod;
+    public void setBillAccount(String billAccount) {
+        this.billAccount = billAccount;
     }
 
     public String getBillNote() {

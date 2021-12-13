@@ -1,12 +1,14 @@
 package com.LiYueZhe2019054505.myaccount.datas;
 
-public class Accounts {
-    private double networth;
-    private double income;
-    private double expense;
-    private double cash;
-    private double wechat;
-    private double alipay;
+import android.app.Application;
+
+public class Accounts extends Application {
+    public double networth;
+    public double income;
+    public double expense;
+    public double cash;
+    public double wechat;
+    public double alipay;
 
     public double getNetworth() {
         return networth;
@@ -54,5 +56,15 @@ public class Accounts {
 
     public void setAlipay(double alipay) {
         this.alipay = alipay;
+    }
+
+    public void onCreate(){
+        super.onCreate();
+        setNetworth(0);
+        setIncome(0);
+        setExpense(0);
+        setCash(0);
+        setWechat(0);
+        setAlipay(0);
     }
 }
