@@ -6,19 +6,15 @@ public class Bills {
     private String billMethod;
     private String billNote;
     private double billAmount;
-    private int billYear;
-    private int billMonth;
-    private int billDay;
+    private String billTime;
 
-    public Bills(String billDirection, String billType, String billMethod, String billNote, double billAmount, int billYear, int billMonth, int billDay) {
+    public Bills(String billDirection, String billType, String billMethod, String billNote, double billAmount, String billTime) {
         this.billDirection = billDirection;
         this.billType = billType;
         this.billMethod = billMethod;
         this.billNote = billNote;
         this.billAmount = billAmount;
-        this.billYear = billYear;
-        this.billMonth = billMonth;
-        this.billDay = billDay;
+        this.billTime = billTime;
     }
 
     public String getBillDirection() {
@@ -61,27 +57,12 @@ public class Bills {
         this.billAmount = billAmount;
     }
 
-    public int getBillYear() {
-        return billYear;
+    public String getBillTime() {
+        return billTime;
     }
 
-    public void setBillYear(int billYear) {
-        this.billYear = billYear;
+    public void setBillTime(String billTime) {
+        this.billTime = billTime;
     }
 
-    public int getBillMonth() {
-        return billMonth;
-    }
-
-    public void setBillMonth(int billMonth) {
-        this.billMonth = billMonth;
-    }
-
-    public int getBillDay() {
-        return billDay;
-    }
-
-    public void setBillDay(int billDay) {
-        this.billDay = billDay;
-    }
 }

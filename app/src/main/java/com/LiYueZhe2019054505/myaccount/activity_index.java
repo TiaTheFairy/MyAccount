@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,11 +30,9 @@ import android.widget.Toast;
 import com.LiYueZhe2019054505.myaccount.datas.Accounts;
 import com.LiYueZhe2019054505.myaccount.datas.Bills;
 import com.LiYueZhe2019054505.myaccount.datas.DataBank;
-import com.LiYueZhe2019054505.myaccount.p_startup.activity_firstStart;
 import com.LiYueZhe2019054505.myaccount.p_startup.activity_normalStart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class activity_index extends AppCompatActivity {
@@ -64,12 +61,10 @@ public class activity_index extends AppCompatActivity {
                 String method = data.getStringExtra("method");
                 String note = data.getStringExtra("note");
                 double amount = data.getDoubleExtra("amount", 0);
-                int year = data.getIntExtra("year", 2021);
-                int month = data.getIntExtra("month", 1);
-                int day = data.getIntExtra("day", 1);
+                String time = data.getStringExtra("time");
                 int position = data.getIntExtra("position", billsList.size());
 
-                billsList.add(position, new Bills(direction, type, method, note, amount, year, month, day));
+                billsList.add(position, new Bills(direction, type, method, note, amount, time));
                 dataBank.saveData();
                 recyclerViewAdapter.notifyItemInserted(position);
             }
@@ -130,7 +125,6 @@ public class activity_index extends AppCompatActivity {
                 launcherAdd.launch(intent);
             }
         });
-
     }
 
     //=====================================================RecyclerView=====================================================
@@ -154,9 +148,7 @@ public class activity_index extends AppCompatActivity {
 
             holder.getBillType().setText(billsList.get(position).getBillType());
             holder.getBillAccount().setText(billsList.get(position).getBillMethod());
-            //holder.getBillAmount().setText(toString(billsList.get(position).getBillAmount()));
-
-
+            holder.getBillAmount().setText((billsList.get(position).getBillAmount()) + "");
 
         }
 
@@ -237,7 +229,7 @@ public class activity_index extends AppCompatActivity {
     }
     //=====================================================左侧弹出菜单=====================================================
     protected void initLeftPopup(){
-        final View popup_left_view = getLayoutInflater().inflate(R.layout.layout_leftmenu, null, false);
+        final View popup_left_view = getLayoutInflater().inflate(R.layout.pop_leftmenu, null, false);
         popup_left = new PopupWindow(popup_left_view, 700, ActionBar.LayoutParams.MATCH_PARENT, true);
 
         popup_left_view.setOnTouchListener(new View.OnTouchListener(){

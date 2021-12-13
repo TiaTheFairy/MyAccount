@@ -501,9 +501,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginBottom="5dp"
         android:layout_above="@id/create_rl_tooltip"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="2dp"
         android:background="#C0C0C0" />
 
     <RelativeLayout
@@ -513,7 +513,7 @@
         android:orientation="horizontal"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="5dp"
-        android:layout_above="@id/create_gl_keyboard">
+        android:layout_above="@id/create_ll_keyboard">
 
         <Button
             android:id="@+id/create_bt_direction"
@@ -551,156 +551,134 @@
 
     </RelativeLayout>
 
-    <GridLayout
-        android:id="@+id/create_gl_keyboard"
+    <LinearLayout
+        android:id="@+id/create_ll_keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="4"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
-        <Button
-            android:id="@+id/create_key_1"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="1"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3">
 
-        <Button
-            android:id="@+id/create_key_2"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="2"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_1"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="1"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_3"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="3"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_2"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="2"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_plus"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="+"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_3"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="3"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_4"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="4"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_4"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="4"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_5"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="5"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_5"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="5"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_6"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="6"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_6"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="6"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_sub"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="-"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_7"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="7"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_7"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="7"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_8"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="8"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_8"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="8"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_9"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="9"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_9"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="9"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_dot"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="."
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_mul"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="*"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <Button
+                android:id="@+id/create_key_0"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:text="0"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/create_key_dot"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="."
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+            <ImageButton
+                android:id="@+id/create_key_delete"
+                android:layout_width="103dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_keys"
+                android:onClick="keyboardDown"
+                android:scaleType="fitCenter"
+                android:src="@drawable/keyboard_delete" />
 
-        <Button
-            android:id="@+id/create_key_0"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:text="0"
-            android:textSize="20sp"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
-
-        <ImageButton
-            android:id="@+id/create_key_delete"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
-            android:src="@drawable/keyboard_delete"
-            android:scaleType="fitCenter"
-            android:onClick="keyboardDown"
-            android:background="@drawable/bt_keys"/>
+        </GridLayout>
 
         <Button
             android:id="@+id/create_key_save"
-            android:layout_width="103dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_keys"
             android:text="@string/createbill_bt_save"
-            android:textSize="20sp"
-            android:background="@drawable/bt_keys"/>
-
-    </GridLayout>
-
+            android:textSize="30sp"/>
+    </LinearLayout>
 </RelativeLayout>

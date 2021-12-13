@@ -1,25 +1,24 @@
 package com.LiYueZhe2019054505.myaccount;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
+import java.util.Calendar;
 
 public class activity_createBill extends AppCompatActivity {
 
@@ -27,7 +26,6 @@ public class activity_createBill extends AppCompatActivity {
     private TextView create_tv_ie;
     private TextView create_tv_transfer;
     private TextView create_tv_again;
-
     private TextView create_tv_billType;
     private TextView create_tv_amount;
 
@@ -53,6 +51,11 @@ public class activity_createBill extends AppCompatActivity {
     private Button create_bt_time;
     private Button create_bt_note;
     private Button create_key_save;
+
+    private EditText pop_create_note;
+    private Button pop_create_noteClear;
+
+    private String billNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,12 @@ public class activity_createBill extends AppCompatActivity {
         create_bt_note = findViewById(R.id.create_bt_note);
         create_key_save = findViewById(R.id.create_key_save);
 
+        //=====================================================初始化=====================================================
+        Calendar calendar = Calendar.getInstance();
+        create_bt_time.setText(calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
+
+        billNote = "";
+
         //=====================================================返回=====================================================
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 0);
@@ -104,20 +113,19 @@ public class activity_createBill extends AppCompatActivity {
             String direction = create_bt_direction.getText().toString();
             String type = create_tv_billType.getText().toString();
             String method = create_bt_method.getText().toString();
-            String note = "";
-            Double amount = 1.23;
-            int year = 2022;
-            int month = 1;
-            int day = 1;
+            String note = billNote;
+            Double amount = Double.parseDouble(create_tv_amount.getText().toString());
+            if(getString(R.string.createbill_bt_expense).equals(direction)){
+                amount *= -1;
+            }
+            String time = create_bt_time.getText().toString();
             createIntent.putExtra("postion", position);
             createIntent.putExtra("direction",direction);
             createIntent.putExtra("type",type);
             createIntent.putExtra("method",method);
             createIntent.putExtra("note",note);
             createIntent.putExtra("amount",amount);
-            createIntent.putExtra("year",year);
-            createIntent.putExtra("month",month);
-            createIntent.putExtra("day",day);
+            createIntent.putExtra("time",time);
             setResult(activity_index.RESULT_CODE_CREATE_BILL, createIntent);
             activity_createBill.this.finish();
         });
@@ -130,7 +138,6 @@ public class activity_createBill extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         //=====================================================底部菜单=====================================================
         create_bt_direction.setOnClickListener(new View.OnClickListener() {
@@ -159,44 +166,148 @@ public class activity_createBill extends AppCompatActivity {
                 }
             }
         });
-    }
-    //=====================================================数字键盘=====================================================
-    public void keyboardDown(View view){
-        double amountNum = Double.parseDouble(create_tv_amount.getText().toString());
 
+        //=====================================================选择时间=====================================================
+        create_bt_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity_createBill.this);
+                View v = (LinearLayout) getLayoutInflater().inflate(R.layout.pop_createtime, null);
+                final DatePicker datePicker = (DatePicker) v.findViewById(R.id.pop_create_time);
+
+                datePicker.setCalendarViewShown(false);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), null);
+
+                builder.setView(v);
+                builder.setTitle(getString(R.string.time_pop_title));
+
+                builder.setPositiveButton(getString(R.string.time_pop_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        create_bt_time.setText(Integer.toString(datePicker.getYear()) + "-" + Integer.toString(datePicker.getMonth()) + "-" +Integer.toString(datePicker.getDayOfMonth()));
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton(getString(R.string.time_pop_today), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Calendar calendar = Calendar.getInstance();
+                        create_bt_time.setText(calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+            }
+        });
+
+        //=====================================================编写备注=====================================================
+        create_bt_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity_createBill.this);
+                View v = (LinearLayout) getLayoutInflater().inflate(R.layout.pop_createnote, null);
+                builder.setView(v);
+
+                pop_create_note = v.findViewById(R.id.pop_create_note);
+                pop_create_noteClear = v.findViewById(R.id.pop_create_noteClear);
+
+                pop_create_note.setText(billNote);
+
+                builder.setPositiveButton(getString(R.string.note_pop_save), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        billNote = pop_create_note.getText().toString();
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton(getString(R.string.note_pop_cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+
+                pop_create_noteClear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pop_create_note.setText("");
+                    }
+                });
+            }
+        });
+    }
+
+    //=====================================================数字键盘=====================================================
+    private int dotExist = 0;
+    private int dotPosition = 0;
+    public void keyboardDown(View view){
+        String amountString = create_tv_amount.getText().toString();
+        if(amountString.length() > 7){
+            Toast.makeText(activity_createBill.this, R.string.createbill_toast_long, Toast.LENGTH_LONG).show();
+            return;
+        }
+        if("0.00".equals(amountString)){
+            amountString ="";
+        }
+        if(dotExist == 1 && view.getId() != R.id.create_key_dot && view.getId() != R.id.create_key_delete){
+            if(dotPosition == 2) return;
+            else dotPosition++;
+        }
         switch (view.getId()){
             case R.id.create_key_0:
-                amountNum += '0';
+                amountString += '0';
                 break;
             case R.id.create_key_1:
-                amountNum += '1';
+                amountString += '1';
                 break;
             case R.id.create_key_2:
-                amountNum += '2';
+                amountString += '2';
                 break;
             case R.id.create_key_3:
-                amountNum += '3';
+                amountString += '3';
                 break;
             case R.id.create_key_4:
-                amountNum += '4';
+                amountString += '4';
                 break;
             case R.id.create_key_5:
-                amountNum += '5';
+                amountString += '5';
                 break;
             case R.id.create_key_6:
-                amountNum += '6';
+                amountString += '6';
                 break;
             case R.id.create_key_7:
-                amountNum += '7';
+                amountString += '7';
                 break;
             case R.id.create_key_8:
-                amountNum += '8';
+                amountString += '8';
                 break;
             case R.id.create_key_9:
-                amountNum += '9';
+                amountString += '9';
+                break;
+            case R.id.create_key_dot:
+                if(dotExist == 0) {
+                    amountString += '.';
+                    dotExist = 1;
+                }
+                break;
+            case R.id.create_key_delete:
+                if(dotExist == 1){
+                    if(dotPosition == 0) dotExist = 0;
+                    else dotPosition--;
+                }
+                if(amountString.length() == 1){
+                    amountString = "0.00";
+                }
+                else if(amountString.length() != 0){
+                    amountString = amountString.substring(0, amountString.length()-1);
+                }
                 break;
         }
-        create_tv_amount.setText(""+amountNum);
+        create_tv_amount.setText(amountString);
     }
 
     //=====================================================选择账单类别=====================================================
