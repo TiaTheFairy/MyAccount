@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAccount">
         <activity
+            android:name=".activity_accounts"
+            android:exported="true" />
+        <activity
             android:name=".activity_detail"
             android:exported="true" />
         <activity

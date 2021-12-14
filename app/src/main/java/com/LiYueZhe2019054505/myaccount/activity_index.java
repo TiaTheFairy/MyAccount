@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +32,6 @@ import com.LiYueZhe2019054505.myaccount.datas.Accounts;
 import com.LiYueZhe2019054505.myaccount.datas.Bills;
 import com.LiYueZhe2019054505.myaccount.datas.DataBank;
 import com.LiYueZhe2019054505.myaccount.p_startup.activity_normalStart;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -46,12 +46,13 @@ public class activity_index extends AppCompatActivity {
     private PopupWindow popup_left;
 
     private ImageView index_iv_menu;
-    private ImageView index_iv_share;
+    private ImageView index_iv_accounts;
     private ImageView index_iv_create;
 
     private TextView index_tv_networth;
     private TextView index_tv_income;
     private TextView index_tv_expense;
+
 
     //=====================================================增删改查=====================================================
     ActivityResultLauncher<Intent> launcherAdd = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -90,7 +91,6 @@ public class activity_index extends AppCompatActivity {
                 }
 
                 dataBank.saveBills();
-                dataBank.saveAccounts();
                 recyclerViewAdapter.notifyItemInserted(position);
                 refreshDisplay();
             }
@@ -168,7 +168,6 @@ public class activity_index extends AppCompatActivity {
                 billsList.get(position).setBillAmount(amount);
                 billsList.get(position).setBillTime(time);
                 dataBank.saveBills();
-                dataBank.saveAccounts();
                 recyclerViewAdapter.notifyItemChanged(position);
                 refreshDisplay();
             }
@@ -182,13 +181,14 @@ public class activity_index extends AppCompatActivity {
             int resultCode = result.getResultCode();
             if(resultCode == RESULT_CODE_TOUCH) {
                 if (null == data) return;
-                String direction = data.getStringExtra("direction");
-                String type = data.getStringExtra("type");
-                String account = data.getStringExtra("account");
-                String note = data.getStringExtra("note");
-                double amount = data.getDoubleExtra("amount", 0);
-                String time = data.getStringExtra("time");
                 int position = data.getIntExtra("position", billsList.size());
+                int action = data.getIntExtra("action", 0);
+                if(action == 1){
+                    editItem(position);
+                }
+                else if(action == 2){
+                    removeItem(position);
+                }
             }
         }
     });
@@ -217,25 +217,98 @@ public class activity_index extends AppCompatActivity {
 
         billsList.remove(position);
         dataBank.saveBills();
-        dataBank.saveAccounts();
         recyclerViewAdapter.notifyItemRemoved(position);
         refreshDisplay();
     }
 
+    void detailItem(int position){
+        Intent intent = new Intent(activity_index.this, activity_detail.class);
+        intent.putExtra("position", position);
+        intent.putExtra("direction", billsList.get(position).getBillDirection());
+        intent.putExtra("type", billsList.get(position).getBillType());
+        intent.putExtra("account", billsList.get(position).getBillAccount());
+        intent.putExtra("note", billsList.get(position).getBillNote());
+        intent.putExtra("amount", billsList.get(position).getBillAmount());
+        intent.putExtra("time", billsList.get(position).getBillTime());
+        launcherView.launch(intent);
+    }
+
+    void editItem(int position){
+        Intent intent = new Intent(activity_index.this, activity_createBill.class);
+        intent.putExtra("position", position);
+        intent.putExtra("direction", billsList.get(position).getBillDirection());
+        intent.putExtra("type", billsList.get(position).getBillType());
+        intent.putExtra("account", billsList.get(position).getBillAccount());
+        intent.putExtra("note", billsList.get(position).getBillNote());
+        intent.putExtra("amount", billsList.get(position).getBillAmount());
+        intent.putExtra("time", billsList.get(position).getBillTime());
+        launcherEdit.launch(intent);
+    }
     //=====================================================初始化和onCreate=====================================================
     public void initData(){
         dataBank = new DataBank(activity_index.this);
-        accounts = new Accounts(0,0,0,0,0,0);
         billsList = dataBank.loadBills();
-        //accounts = dataBank.loadAccounts();
     }
 
     public void refreshDisplay(){
+        int displayError = 0;
+
+        accounts = new Accounts(0,0,0,0,0,0);
+        for(int tmp = 0; tmp < billsList.size(); tmp++){
+            accounts.networth += billsList.get(tmp).getBillAmount();
+            if((getString(R.string.createbill_bt_income).equals(billsList.get(tmp).getBillDirection()))){
+                accounts.income += billsList.get(tmp).getBillAmount();
+            }
+            else{
+                accounts.expense -= billsList.get(tmp).getBillAmount();
+            }
+            if((getString(R.string.accounttype_cash).equals(billsList.get(tmp).getBillAccount()))){
+                accounts.cash += billsList.get(tmp).getBillAmount();
+            }
+            else if((getString(R.string.accounttype_wechat).equals(billsList.get(tmp).getBillAccount()))){
+                accounts.wechat += billsList.get(tmp).getBillAmount();
+            }
+            else{
+                accounts.alipay += billsList.get(tmp).getBillAmount();
+            }
+        }
+
+        if(accounts.networth < 0){
+            index_tv_networth.setTextColor(getResources().getColor(R.color.red));
+        }
+        else{
+            index_tv_networth.setTextColor(getResources().getColor(R.color.green));
+        }
+        if(accounts.income < 0){
+            accounts.income = 0;
+            displayError = 1;
+        }
+        if(accounts.expense < 0){
+            accounts.expense = 0;
+            displayError = 1;
+        }
+        if(accounts.networth != accounts.income - accounts.expense){
+            accounts.networth = 0;
+            accounts.income = 0;
+            accounts.expense = 0;
+            displayError = 1;
+        }
+        if(displayError == 1){
+            AlertDialog.Builder alertDeleteConfirm = new AlertDialog.Builder(activity_index.this);
+            alertDeleteConfirm.setPositiveButton(R.string.index_tv_accountsEdit, (dialogInterface, i) -> {
+
+            });
+            alertDeleteConfirm.setNegativeButton(R.string.index_tv_accountsCancel,(dialogInterface, i) -> {
+
+            });
+            alertDeleteConfirm.setMessage(R.string.index_tv_accountsError);
+        }
+
         index_tv_networth.setText(accounts.networth+"");
         index_tv_income.setText(accounts.income+"");
         index_tv_expense.setText(accounts.expense+"");
-        dataBank.saveAccounts();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,7 +319,7 @@ public class activity_index extends AppCompatActivity {
         initData();
 
         index_iv_menu = findViewById(R.id.index_iv_menu);
-        index_iv_share = findViewById(R.id.index_iv_share);
+        index_iv_accounts= findViewById(R.id.index_iv_accounts);
         index_iv_create = findViewById(R.id.index_iv_create);
         index_tv_networth = findViewById(R.id.index_tv_networth);
         index_tv_income = findViewById(R.id.index_tv_income);
@@ -257,7 +330,7 @@ public class activity_index extends AppCompatActivity {
         RecyclerView mainRecyclerView = findViewById(R.id.index_rv_main);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mainRecyclerView.setLayoutManager(layoutManager);
-        recyclerViewAdapter = new activity_index.MyRecyclerViewAdapter(billsList);
+        recyclerViewAdapter = new MyRecyclerViewAdapter(billsList);
         mainRecyclerView.setAdapter(recyclerViewAdapter);
 
         index_iv_menu.setOnClickListener(new View.OnClickListener() {
@@ -268,10 +341,46 @@ public class activity_index extends AppCompatActivity {
             }
         });
 
-        index_iv_share.setOnClickListener(new View.OnClickListener() {
+        ActivityResultLauncher<Intent> launcherAccounts = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                Intent data = result.getData();
+                int resultCode = result.getResultCode();
+                if(resultCode == RESULT_CODE_TOUCH) {
+                    if (null == data) return;
+                    double networth = data.getDoubleExtra("networth",accounts.networth);
+                    double income = data.getDoubleExtra("income", accounts.income);
+                    double expense = data.getDoubleExtra("expense", accounts.expense);
+                    double cash = data.getDoubleExtra("cash", accounts.cash);
+                    double wechat = data.getDoubleExtra("wechat", accounts.wechat);
+                    double alipay = data.getDoubleExtra("alipay", accounts.alipay);
+                    int action = data.getIntExtra("action", 0);
+
+                    if(action == 1){
+                        accounts.networth = networth;
+                        accounts.income = income;
+                        accounts.expense = expense;
+                        accounts.cash = cash;
+                        accounts.wechat = wechat;
+                        accounts.alipay = alipay;
+                    }
+
+                    refreshDisplay();
+                }
+            }
+        });
+
+        index_iv_accounts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity_index.this, getResources().getString(R.string.not_supported), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(activity_index.this, activity_accounts.class);
+                intent.putExtra("networth", accounts.networth);
+                intent.putExtra("income", accounts.income);
+                intent.putExtra("expense", accounts.expense);
+                intent.putExtra("cash", accounts.cash);
+                intent.putExtra("wechat", accounts.wechat);
+                intent.putExtra("alipay", accounts.alipay);
+                launcherAccounts.launch(intent);
             }
         });
 
@@ -283,6 +392,9 @@ public class activity_index extends AppCompatActivity {
                 launcherAdd.launch(intent);
             }
         });
+
+        //=====================================================左侧菜单事件=====================================================
+
     }
 
     //=====================================================RecyclerView=====================================================
@@ -420,32 +532,15 @@ public class activity_index extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 int position = getAdapterPosition();
-                Intent intent;
                 switch (menuItem.getItemId()){
                     case LIST_REMOVE:
                         removeItem(position);
                         break;
                     case LIST_DETAIL:
-                        intent = new Intent(activity_index.this, activity_detail.class);
-                        intent.putExtra("position", position);
-                        intent.putExtra("direction", billsList.get(position).getBillDirection());
-                        intent.putExtra("type", billsList.get(position).getBillType());
-                        intent.putExtra("account", billsList.get(position).getBillAccount());
-                        intent.putExtra("note", billsList.get(position).getBillNote());
-                        intent.putExtra("amount", billsList.get(position).getBillAmount());
-                        intent.putExtra("time", billsList.get(position).getBillTime());
-                        launcherView.launch(intent);
+                        detailItem(position);
                         break;
                     case LIST_EDIT:
-                        intent = new Intent(activity_index.this, activity_createBill.class);
-                        intent.putExtra("position", position);
-                        intent.putExtra("direction", billsList.get(position).getBillDirection());
-                        intent.putExtra("type", billsList.get(position).getBillType());
-                        intent.putExtra("account", billsList.get(position).getBillAccount());
-                        intent.putExtra("note", billsList.get(position).getBillNote());
-                        intent.putExtra("amount", billsList.get(position).getBillAmount());
-                        intent.putExtra("time", billsList.get(position).getBillTime());
-                        launcherEdit.launch(intent);
+                        editItem(position);
                         break;
                     case LIST_REFRESH:
                         break;
@@ -455,6 +550,7 @@ public class activity_index extends AppCompatActivity {
 
         }
     }
+
     //=====================================================左侧弹出菜单=====================================================
     protected void initLeftPopup(){
         final View popup_left_view = getLayoutInflater().inflate(R.layout.pop_leftmenu, null, false);
@@ -471,16 +567,6 @@ public class activity_index extends AppCompatActivity {
             }
         });
         popup_left_view.setBackgroundDrawable(new ColorDrawable(0));
-
-        LinearLayout leftmenu_lo_index = popup_left_view.findViewById(R.id.leftmenu_lo_index);
-
-        leftmenu_lo_index.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity_index.this, activity_normalStart.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void getLeftPopup(){

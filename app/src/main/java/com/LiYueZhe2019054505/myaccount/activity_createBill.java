@@ -137,13 +137,13 @@ public class activity_createBill extends AppCompatActivity {
                 Toast.makeText(activity_createBill.this, R.string.createbill_toast_empty, Toast.LENGTH_SHORT).show();
                 return;
             }
-            Intent createIntent = new Intent();
 
             billAmount = Double.parseDouble(create_tv_amount.getText().toString());
             if (getString(R.string.createbill_bt_expense).equals(create_bt_direction.getText().toString())) {
                 billAmount *= -1;
             }
 
+            Intent createIntent = new Intent();
             createIntent.putExtra("position", position);
             createIntent.putExtra("direction", create_bt_direction.getText().toString());
             createIntent.putExtra("type", create_tv_billType.getText().toString());

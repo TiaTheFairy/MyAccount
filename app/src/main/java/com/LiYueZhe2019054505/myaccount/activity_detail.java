@@ -61,20 +61,26 @@ public class activity_detail extends AppCompatActivity {
             detail_tv_note.setText(note);
         }
 
-
-
         //=====================================================顶部菜单=====================================================
         detail_tv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent viewIntet = new Intent();
+                viewIntet.putExtra("position", position);
+                viewIntet.putExtra("action", 1);
+                setResult(activity_index.RESULT_CODE_TOUCH, viewIntet);
+                activity_detail.this.finish();
             }
         });
 
         detail_tv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent viewIntent = new Intent();
+                viewIntent.putExtra("position", position);
+                viewIntent.putExtra("action", 2);
+                setResult(activity_index.RESULT_CODE_TOUCH, viewIntent);
+                activity_detail.this.finish();
             }
         });
 
@@ -82,6 +88,10 @@ public class activity_detail extends AppCompatActivity {
         detail_iv_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent viewIntent = new Intent();
+                viewIntent.putExtra("position", position);
+                viewIntent.putExtra("action", 0);
+                setResult(activity_index.RESULT_CODE_TOUCH, viewIntent);
                 activity_detail.this.finish();
             }
         });

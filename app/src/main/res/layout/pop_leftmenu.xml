@@ -6,7 +6,7 @@
     android:clickable="true">
 
     <RelativeLayout
-        android:id="@+id/leftmenu_lo_user"
+        android:id="@+id/leftmenu_ll_user"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center_vertical"
@@ -24,23 +24,23 @@
             android:id="@+id/leftmenu_tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@id/leftmenu_iv_userpic"
-            android:text="username"
+            android:text="@string/leftmenu_tv_username"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/leftmenu_tv_userbrief"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="userbrief"
-            android:textSize="13sp"
-            android:textColor="@color/white"
             android:layout_below="@id/leftmenu_tv_username"
             android:layout_toEndOf="@id/leftmenu_iv_userpic"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="15dp"
+            android:text="@string/leftmenu_tv_brief"
+            android:textSize="13sp"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 
@@ -53,7 +53,7 @@
         android:paddingLeft="10dp">
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_index"
+            android:id="@+id/leftmenu_ll_index"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -77,7 +77,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_history"
+            android:id="@+id/leftmenu_ll_history"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -101,7 +101,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_analysis"
+            android:id="@+id/leftmenu_ll_analysis"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -125,7 +125,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_types"
+            android:id="@+id/leftmenu_ll_types"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -149,7 +149,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_accounts"
+            android:id="@+id/leftmenu_ll_accounts"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -173,7 +173,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_userpage"
+            android:id="@+id/leftmenu_ll_userpage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -195,13 +195,13 @@
                 android:layout_marginStart="15dp"/>
 
         </LinearLayout>
-
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="#A9A9A9"/>
+        android:background="#A9A9A9"
+        android:clickable="true"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -210,18 +210,21 @@
         android:textSize="15sp"
         android:background="#FFFAFA"
         android:paddingLeft="10dp"
+        android:clickable="true"
         android:layout_marginTop="5dp"/>
 
     <LinearLayout
+        android:id="@+id/leftmenu_ll_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#FFFAFA"
         android:paddingTop="10dp"
-        android:paddingLeft="10dp">
+        android:paddingLeft="10dp"
+        android:clickable="true">
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_search"
+            android:id="@+id/leftmenu_ll_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -245,7 +248,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_backup"
+            android:id="@+id/leftmenu_ll_backup"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -269,7 +272,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_donate"
+            android:id="@+id/leftmenu_ll_donate"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -293,7 +296,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_settings"
+            android:id="@+id/leftmenu_ll_settings"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -317,7 +320,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/leftmenu_lo_feedback"
+            android:id="@+id/leftmenu_ll_feedback"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

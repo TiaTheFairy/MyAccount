@@ -20,6 +20,9 @@
     <string name="index_tv_networth">净资产</string>
     <string name="index_tv_income">总收入</string>
     <string name="index_tv_expense">总支出</string>
+    <string name="index_tv_accountsError">账户信息出现了不合理的值，系统将重置这些值，请手动修改。</string>
+    <string name="index_tv_accountsEdit">立刻修改</string>
+    <string name="index_tv_accountsCancel">暂不修改</string>
 
     <string name="longclick_tv_remove">删除</string>
     <string name="longclick_tv_detail">详情</string>
@@ -38,6 +41,8 @@
     <string name="leftmenu_tv_donate">捐赠作者</string>
     <string name="leftmenu_tv_setting">设置</string>
     <string name="leftmenu_tv_feedback">反馈和帮助</string>
+    <string name="leftmenu_tv_username">小勤快</string>
+    <string name="leftmenu_tv_brief">天道酬勤</string>
 
     <string name="createbill_tv_incomeandexpense">收支</string>
     <string name="createbill_tv_transfer">转账</string>
@@ -69,6 +74,17 @@
     <string name="detail_tv_left">账户余额：</string>
     <string name="detail_tv_note">备注：</string>
     <string name="detail_tv_empty">未填写：</string>
+
+    <string name="accounts_tv_title">账户设置</string>
+    <string name="accounts_tv_networth">总资产：</string>
+    <string name="accounts_tv_income">总收入：</string>
+    <string name="accounts_tv_expense">总支出：</string>
+    <string name="accounts_tv_cash">现金：</string>
+    <string name="accounts_tv_wechat">微信：</string>
+    <string name="accounts_tv_alipay">支付宝：</string>
+    <string name="accounts_tv_editing">正在编辑：</string>
+    <string name="accounts_tv_save">保存</string>
+    <string name="accounts_tv_undo">撤销</string>
 
     <string name="billtype_default">其他</string>
     <string name="billtype_food">吃喝饮食</string>
