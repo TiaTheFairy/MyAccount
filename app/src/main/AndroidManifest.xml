@@ -19,13 +19,13 @@
             android:name=".activity_createBill"
             android:exported="true" />
         <activity
-            android:name=".p_startup.activity_firstStart"
+            android:name=".p_startup.activity_normalStart"
             android:exported="true" />
         <activity
             android:name=".activity_index"
             android:exported="true" />
         <activity
-            android:name=".p_startup.activity_normalStart"
+            android:name=".p_startup.activity_firstStart"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

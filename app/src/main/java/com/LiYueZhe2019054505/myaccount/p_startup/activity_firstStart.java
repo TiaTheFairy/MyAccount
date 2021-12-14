@@ -26,7 +26,7 @@ public class activity_firstStart extends AppCompatActivity {
         firstStart_bt_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity_firstStart.this, activity_index.class);
+                Intent intent = new Intent(activity_firstStart.this, activity_normalStart.class);
                 startActivity(intent);
             }
         });
