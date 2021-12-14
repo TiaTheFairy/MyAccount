@@ -45,14 +45,9 @@ public class activity_index extends AppCompatActivity {
     private MyRecyclerViewAdapter recyclerViewAdapter;
     private PopupWindow popup_left;
 
-    private ImageView index_iv_menu;
-    private ImageView index_iv_accounts;
-    private ImageView index_iv_create;
-
     private TextView index_tv_networth;
     private TextView index_tv_income;
     private TextView index_tv_expense;
-
 
     //=====================================================增删改查=====================================================
     ActivityResultLauncher<Intent> launcherAdd = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -251,8 +246,6 @@ public class activity_index extends AppCompatActivity {
     }
 
     public void refreshDisplay(){
-        int displayError = 0;
-
         accounts = new Accounts(0,0,0,0,0,0);
         for(int tmp = 0; tmp < billsList.size(); tmp++){
             accounts.networth += billsList.get(tmp).getBillAmount();
@@ -279,34 +272,10 @@ public class activity_index extends AppCompatActivity {
         else{
             index_tv_networth.setTextColor(getResources().getColor(R.color.green));
         }
-        if(accounts.income < 0){
-            accounts.income = 0;
-            displayError = 1;
-        }
-        if(accounts.expense < 0){
-            accounts.expense = 0;
-            displayError = 1;
-        }
-        if(accounts.networth != accounts.income - accounts.expense){
-            accounts.networth = 0;
-            accounts.income = 0;
-            accounts.expense = 0;
-            displayError = 1;
-        }
-        if(displayError == 1){
-            AlertDialog.Builder alertDeleteConfirm = new AlertDialog.Builder(activity_index.this);
-            alertDeleteConfirm.setPositiveButton(R.string.index_tv_accountsEdit, (dialogInterface, i) -> {
 
-            });
-            alertDeleteConfirm.setNegativeButton(R.string.index_tv_accountsCancel,(dialogInterface, i) -> {
-
-            });
-            alertDeleteConfirm.setMessage(R.string.index_tv_accountsError);
-        }
-
-        index_tv_networth.setText(accounts.networth+"");
-        index_tv_income.setText(accounts.income+"");
-        index_tv_expense.setText(accounts.expense+"");
+        index_tv_networth.setText(accounts.networth + "");
+        index_tv_income.setText(accounts.income + "");
+        index_tv_expense.setText(accounts.expense + "");
     }
 
 
@@ -318,9 +287,9 @@ public class activity_index extends AppCompatActivity {
 
         initData();
 
-        index_iv_menu = findViewById(R.id.index_iv_menu);
-        index_iv_accounts= findViewById(R.id.index_iv_accounts);
-        index_iv_create = findViewById(R.id.index_iv_create);
+        ImageView index_iv_menu = findViewById(R.id.index_iv_menu);
+        ImageView index_iv_accounts= findViewById(R.id.index_iv_accounts);
+        ImageView index_iv_create = findViewById(R.id.index_iv_create);
         index_tv_networth = findViewById(R.id.index_tv_networth);
         index_tv_income = findViewById(R.id.index_tv_income);
         index_tv_expense = findViewById(R.id.index_tv_expense);
@@ -544,7 +513,6 @@ public class activity_index extends AppCompatActivity {
                 }
                 return false;
             }
-
         }
     }
 

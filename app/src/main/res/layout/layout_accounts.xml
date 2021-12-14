@@ -8,10 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#87CEFA"
         android:paddingHorizontal="10dp"
         android:layout_marginBottom="15dp"
         android:gravity="center_vertical"
+        android:background="#87CEFA"
         android:orientation="horizontal">
 
         <ImageView
@@ -28,11 +28,9 @@
             android:text="@string/accounts_tv_title"
             android:textColor="#F8F8FF"
             android:textSize="25sp" />
-
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/accounts_rl_networth"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingHorizontal="10dp"
@@ -55,7 +53,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/accounts_rl_income"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingHorizontal="10dp"
@@ -78,7 +75,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/accounts_rl_expense"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingHorizontal="10dp"
@@ -101,7 +97,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/accounts_rl_cash"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingHorizontal="10dp"
@@ -121,11 +116,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:textSize="22sp"/>
-
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/accounts_rl_wechat"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingHorizontal="10dp"
@@ -145,11 +138,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:textSize="22sp"/>
-
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/accounts_rl_alipay"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingHorizontal="10dp"

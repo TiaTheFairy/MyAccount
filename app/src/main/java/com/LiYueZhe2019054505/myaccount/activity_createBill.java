@@ -16,47 +16,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class activity_createBill extends AppCompatActivity {
 
-    private ImageView create_iv_return;
-    private TextView create_tv_ie;
-    private TextView create_tv_transfer;
-    private TextView create_tv_again;
     private TextView create_tv_billType;
     private TextView create_tv_amount;
-
-    private LinearLayout create_type_default;
-    private LinearLayout create_type_food;
-    private LinearLayout create_type_traffic;
-    private LinearLayout create_type_phone;
-    private LinearLayout create_type_debt;
-    private LinearLayout create_type_gift;
-    private LinearLayout create_type_house;
-    private LinearLayout create_type_medical;
-    private LinearLayout create_type_redpacket;
-    private LinearLayout create_type_shopping;
-    private LinearLayout create_type_sport;
-    private LinearLayout create_type_wage;
-    private LinearLayout create_type_daily;
-    private LinearLayout create_type_party;
-    private LinearLayout create_type_stock;
-    private LinearLayout create_type_travel;
-
-    private Button create_bt_direction;
-    private Button create_bt_account;
-    private Button create_bt_time;
-    private Button create_bt_note;
-    private Button create_key_save;
-
     private EditText pop_create_note;
     private Button pop_create_noteClear;
 
     private String billNote;
     private Double billAmount;
-    private int dotExist = 0;
-    private int dotPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,51 +36,26 @@ public class activity_createBill extends AppCompatActivity {
         setContentView(R.layout.layout_createbill);
 
         //=====================================================寻找控件=====================================================
-        create_iv_return = findViewById(R.id.create_iv_return);
-        create_tv_ie = findViewById(R.id.create_tv_ie);
-        create_tv_transfer = findViewById(R.id.create_tv_transfer);
-        create_tv_again = findViewById(R.id.create_tv_again);
+        ImageView create_iv_return = findViewById(R.id.create_iv_return);
 
         create_tv_billType = findViewById(R.id.create_tv_billtype);
         create_tv_amount = findViewById(R.id.create_tv_amount);
 
-        create_type_default = findViewById(R.id.create_type_default);
-        create_type_food = findViewById(R.id.create_type_food);
-        create_type_traffic = findViewById(R.id.create_type_traffic);
-        create_type_phone = findViewById(R.id.create_type_phone);
-        create_type_debt = findViewById(R.id.create_type_debt);
-        create_type_gift = findViewById(R.id.create_type_gift);
-        create_type_house = findViewById(R.id.create_type_house);
-        create_type_medical = findViewById(R.id.create_type_medical);
-        create_type_redpacket = findViewById(R.id.create_type_redpacket);
-        create_type_shopping = findViewById(R.id.create_type_shopping);
-        create_type_sport = findViewById(R.id.create_type_sport);
-        create_type_wage = findViewById(R.id.create_type_wage);
-        create_type_daily = findViewById(R.id.create_type_daily);
-        create_type_party = findViewById(R.id.create_type_party);
-        create_type_stock = findViewById(R.id.create_type_stock);
-        create_type_travel = findViewById(R.id.create_type_travel);
-
-        create_bt_direction = findViewById(R.id.create_bt_direction);
-        create_bt_account = findViewById(R.id.create_bt_account);
-        create_bt_time = findViewById(R.id.create_bt_time);
-        create_bt_note = findViewById(R.id.create_bt_note);
-        create_key_save = findViewById(R.id.create_key_save);
+        Button create_bt_direction = findViewById(R.id.create_bt_direction);
+        Button create_bt_account = findViewById(R.id.create_bt_account);
+        Button create_bt_time = findViewById(R.id.create_bt_time);
+        Button create_bt_note = findViewById(R.id.create_bt_note);
+        Button create_key_save = findViewById(R.id.create_key_save);
 
         //=====================================================初始化=====================================================
         Calendar calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH) +1;
-        if(month == 13){
+        if(month == 13) {
             month = 1;
         }
         create_bt_time.setText(calendar.get(Calendar.YEAR) + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH));
 
         billNote = "";
-
-        if((create_tv_amount.getText().toString()).contains(".")){
-            dotExist = 1;
-            dotPosition = (create_tv_amount.getText().toString()).indexOf(".");
-        }
 
         //=====================================================返回=====================================================
         Intent intent = getIntent();
@@ -160,13 +107,6 @@ public class activity_createBill extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 activity_createBill.this.finish();
-            }
-        });
-
-        create_tv_again.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(activity_createBill.this, R.string.not_supported, Toast.LENGTH_SHORT).show();
             }
         });
         //=====================================================底部菜单=====================================================
@@ -281,30 +221,55 @@ public class activity_createBill extends AppCompatActivity {
 
     //=====================================================数字键盘=====================================================
 
+    private boolean dotExist = false;
+    private int dotPosition = 0;
     public void keyboardDown(View view){
         String amountString = create_tv_amount.getText().toString();
-        if(amountString.length() > 6 && view.getId() != R.id.create_key_delete){
+
+        if((create_tv_amount.getText().toString()).contains(".")){
+            dotExist = true;
+            dotPosition = amountString.length() - amountString.indexOf(".") - 1;
+        }
+        else{
+            dotExist = false;
+            dotPosition = 0;
+        }
+        if(dotExist){
+            if("0.00".equals(amountString)){
+                if(view.getId() == R.id.create_key_dot){
+                    dotPosition = 0;
+                }
+                else if(view.getId() == R.id.create_key_delete){
+                    return;
+                }
+                amountString = "";
+            }
+            else {
+                if (view.getId() == R.id.create_key_dot) {
+                    return;
+                }
+                else if (view.getId() != R.id.create_key_delete) {
+                    if (dotPosition == 2){
+                        return;
+                    }
+                }
+            }
+
+        }
+
+        if(amountString.length() > 7 && view.getId() != R.id.create_key_delete){
             Toast.makeText(activity_createBill.this, R.string.createbill_toast_long, Toast.LENGTH_SHORT).show();
             return;
         }
-        if("0.00".equals(amountString) && view.getId() != R.id.create_key_delete){
-            amountString ="";
-            if(view.getId() != R.id.create_key_dot){
-                dotExist = 0;
-                dotPosition = 0;
-            }
-        }
-        if(dotExist == 1 && view.getId() != R.id.create_key_dot && view.getId() != R.id.create_key_delete){
-            if(dotPosition == 2) return;
-            else dotPosition++;
-        }
+
         switch (view.getId()){
             case R.id.create_key_0:
-                if("".equals(amountString) == false){
+                if(!"".equals(amountString)){
                     amountString += '0';
                 }
                 else{
-                    amountString = "0.00";
+                    amountString = "0.";
+                    dotExist = true;
                 }
                 break;
             case R.id.create_key_1:
@@ -335,25 +300,26 @@ public class activity_createBill extends AppCompatActivity {
                 amountString += '9';
                 break;
             case R.id.create_key_dot:
-                if(dotExist == 0) {
-                    if("".equals(amountString)){
-                        amountString = "0.";
-                    }
-                    else{
-                        amountString += '.';
-                    }
-                    dotExist = 1;
+                if("".equals(amountString)){
+                    amountString = "0.";
                 }
+                else{
+                    amountString += '.';
+                }
+                dotExist = true;
                 break;
             case R.id.create_key_delete:
-                if(dotExist == 1){
-                    if(dotPosition == 0) dotExist = 0;
+                if(dotExist){
+                    if(dotPosition == 0) {
+                        dotExist = false;
+                    }
                     else dotPosition--;
                 }
-                if("0.00".equals(amountString) == false) {
+                if(!"0.00".equals(amountString)) {
                     if (amountString.length() == 1 || "0.".equals(amountString)) {
                         amountString = "0.00";
-                    } else if (amountString.length() != 0) {
+                    }
+                    else if (amountString.length() != 0) {
                         amountString = amountString.substring(0, amountString.length() - 1);
                     }
                 }

@@ -1,6 +1,5 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -20,32 +19,6 @@
             android:layout_height="20dp"
             android:layout_marginEnd="120dp"
             android:src="@drawable/global_return" />
-
-        <TextView
-            android:id="@+id/create_tv_ie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="@string/createbill_tv_incomeandexpense"
-            android:textColor="#F8F8FF"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/create_tv_transfer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="90dp"
-            android:text="@string/createbill_tv_transfer"
-            android:textColor="#F8F8FF"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/create_tv_again"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/createbill_tv_createagain"
-            android:textColor="#F8F8FF"
-            android:textSize="15sp" />
 
     </LinearLayout>
 
