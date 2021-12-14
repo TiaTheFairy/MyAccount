@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,94 +6,62 @@
     android:background="#F5F5F5">
 
     <LinearLayout
-        android:id="@+id/accounts_ll_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="40dp"
+        android:background="#87CEFA"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#87CEFA"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="15dp">
+        <ImageView
+            android:id="@+id/accounts_iv_return"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/global_return" />
 
-            <ImageView
-                android:id="@+id/accounts_iv_return"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/global_return" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/accounts_tv_title"
+            android:textColor="#F8F8FF"
+            android:textSize="25sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="20dp"
-                android:layout_toEndOf="@id/accounts_iv_return"
-                android:text="@string/accounts_tv_title"
-                android:textColor="#F8F8FF"
-                android:textSize="25sp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/accounts_tv_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@id/accounts_tv_undo"
-                android:text="@string/accounts_tv_save"
-                android:textColor="#F8F8FF"
-                android:textSize="18sp" />
+    <RelativeLayout
+        android:id="@+id/accounts_rl_networth"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="#FFFAFA">
 
-            <TextView
-                android:id="@+id/accounts_tv_undo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="@string/accounts_tv_undo"
-                android:textColor="#F8F8FF"
-                android:textSize="18sp" />
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accounts_tv_networth"
+            android:textSize="22sp"/>
 
-        <RelativeLayout
-            android:id="@+id/accounts_rl_networth"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:clickable="true"
-            android:onClick="editingAccounts">
+        <TextView
+            android:id="@+id/accounts_tv_networth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="22sp"/>
+    </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accounts_tv_networth"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/accounts_tv_networth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="22sp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/accounts_rl_income"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:clickable="true"
-            android:onClick="editingAccounts">
+    <RelativeLayout
+        android:id="@+id/accounts_rl_income"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="#FFFAFA">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,272 +75,99 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:textSize="22sp"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/accounts_rl_expense"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:clickable="true"
-            android:onClick="editingAccounts">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accounts_tv_expense"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/accounts_tv_expense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="22sp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/accounts_rl_cash"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:clickable="true"
-            android:onClick="editingAccounts">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accounts_tv_cash"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/accounts_tv_cash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="22sp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/accounts_rl_wechat"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:clickable="true"
-            android:onClick="editingAccounts">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accounts_tv_wechat"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/accounts_tv_wechat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="22sp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/accounts_rl_alipay"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:clickable="true"
-            android:onClick="editingAccounts">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accounts_tv_alipay"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/accounts_tv_alipay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="22sp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/accounts_rl_editing"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_vertical"
-            android:background="#FFFAFA"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accounts_tv_editing"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/accounts_tv_editing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:textSize="22sp"/>
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/accounts_ll_keyboard"
+    <RelativeLayout
+        android:id="@+id/accounts_rl_expense"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:visibility="invisible">
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="#FFFAFA">
 
-        <GridLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="3">
+            android:text="@string/accounts_tv_expense"
+            android:textSize="22sp"/>
 
-            <Button
-                android:id="@+id/accounts_key_1"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="1"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/accounts_tv_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="22sp"/>
+    </RelativeLayout>
 
-            <Button
-                android:id="@+id/accounts_key_2"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="2"
-                android:textSize="20sp" />
+    <RelativeLayout
+        android:id="@+id/accounts_rl_cash"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="#FFFAFA">
 
-            <Button
-                android:id="@+id/accounts_key_3"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="3"
-                android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accounts_tv_cash"
+            android:textSize="22sp"/>
 
-            <Button
-                android:id="@+id/accounts_key_4"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="4"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/accounts_tv_cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="22sp"/>
 
-            <Button
-                android:id="@+id/accounts_key_5"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="5"
-                android:textSize="20sp" />
+    </RelativeLayout>
 
-            <Button
-                android:id="@+id/accounts_key_6"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="6"
-                android:textSize="20sp" />
+    <RelativeLayout
+        android:id="@+id/accounts_rl_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="#FFFAFA">
 
-            <Button
-                android:id="@+id/accounts_key_7"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="7"
-                android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accounts_tv_wechat"
+            android:textSize="22sp"/>
 
-            <Button
-                android:id="@+id/accounts_key_8"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="8"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/accounts_tv_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="22sp"/>
 
-            <Button
-                android:id="@+id/accounts_key_9"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="9"
-                android:textSize="20sp" />
+    </RelativeLayout>
 
-            <Button
-                android:id="@+id/accounts_key_dot"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="."
-                android:textSize="20sp" />
+    <RelativeLayout
+        android:id="@+id/accounts_rl_alipay"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="#FFFAFA">
 
-            <Button
-                android:id="@+id/accounts_key_0"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:text="0"
-                android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accounts_tv_alipay"
+            android:textSize="22sp"/>
 
-            <ImageButton
-                android:id="@+id/accounts_key_delete"
-                android:layout_width="103dp"
-                android:layout_height="50dp"
-                android:background="@drawable/bt_keys"
-                android:onClick="keyboardDownAccounts"
-                android:scaleType="fitCenter"
-                android:src="@drawable/keyboard_delete" />
-
-        </GridLayout>
-
-        <Button
-            android:id="@+id/accounts_key_save"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bt_keys"
-            android:text="@string/createbill_bt_save"
-            android:textSize="30sp" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+        <TextView
+            android:id="@+id/accounts_tv_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textSize="22sp"/>
+        </RelativeLayout>
+</LinearLayout>
