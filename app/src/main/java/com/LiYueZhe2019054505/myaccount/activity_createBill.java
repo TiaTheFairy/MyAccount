@@ -125,6 +125,9 @@ public class activity_createBill extends AppCompatActivity {
             create_tv_billType.setText(type);
             create_bt_account.setText(account);
             billNote = note;
+            if(amount < 0){
+                amount *= -1;
+            }
             billAmount = amount;
             create_tv_amount.setText(amount+"");
             create_bt_time.setText(time);

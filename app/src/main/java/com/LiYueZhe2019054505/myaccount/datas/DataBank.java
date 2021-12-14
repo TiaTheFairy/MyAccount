@@ -31,8 +31,8 @@ public class DataBank {
         return billsList;
     }
 
+
     public Accounts loadAccounts(){
-        accounts = new Accounts();
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(context.openFileInput(DATA_ACCOUNTS));
             accounts = (Accounts) objectInputStream.readObject();
@@ -42,11 +42,27 @@ public class DataBank {
         return accounts;
     }
 
-    public void saveData() {
+    public void saveBills() {
         ObjectOutputStream objectOutputStream = null;
         try{
             objectOutputStream = new ObjectOutputStream(context.openFileOutput(DATA_BILLS, Context.MODE_PRIVATE));
             objectOutputStream.writeObject(billsList);
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if (objectOutputStream != null) {
+                    objectOutputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void saveAccounts() {
+        ObjectOutputStream objectOutputStream = null;
+        try{
             objectOutputStream = new ObjectOutputStream(context.openFileOutput(DATA_ACCOUNTS, Context.MODE_PRIVATE));
             objectOutputStream.writeObject(accounts);
         }catch(IOException e){

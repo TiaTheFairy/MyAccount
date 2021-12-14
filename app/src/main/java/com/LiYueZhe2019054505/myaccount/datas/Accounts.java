@@ -1,14 +1,23 @@
 package com.LiYueZhe2019054505.myaccount.datas;
 
-import android.app.Application;
+import java.io.Serializable;
 
-public class Accounts extends Application {
+public class Accounts implements Serializable {
     public double networth;
     public double income;
     public double expense;
     public double cash;
     public double wechat;
     public double alipay;
+
+    public Accounts(double networth, double income, double expense, double cash, double wechat, double alipay) {
+        this.networth = networth;
+        this.income = income;
+        this.expense = expense;
+        this.cash = cash;
+        this.wechat = wechat;
+        this.alipay = alipay;
+    }
 
     public double getNetworth() {
         return networth;
@@ -56,15 +65,5 @@ public class Accounts extends Application {
 
     public void setAlipay(double alipay) {
         this.alipay = alipay;
-    }
-
-    public void onCreate(){
-        super.onCreate();
-        setNetworth(0);
-        setIncome(0);
-        setExpense(0);
-        setCash(0);
-        setWechat(0);
-        setAlipay(0);
     }
 }

@@ -1,6 +1,8 @@
 package com.LiYueZhe2019054505.myaccount.datas;
 
-public class Bills {
+import java.io.Serializable;
+
+public class Bills implements Serializable {
     private String billDirection;
     private String billType;
     private String billAccount;

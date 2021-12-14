@@ -40,15 +40,20 @@ public class activity_index extends AppCompatActivity {
     public static final int RESULT_CODE_TOUCH = 500;
 
     private List<Bills> billsList;
+    private Accounts accounts;
     private DataBank dataBank;
     private MyRecyclerViewAdapter recyclerViewAdapter;
+    private PopupWindow popup_left;
 
     private ImageView index_iv_menu;
     private ImageView index_iv_share;
     private ImageView index_iv_create;
-    private PopupWindow popup_left;
 
-    //=====================================================新增、修改、查看账单=====================================================
+    private TextView index_tv_networth;
+    private TextView index_tv_income;
+    private TextView index_tv_expense;
+
+    //=====================================================增删改查=====================================================
     ActivityResultLauncher<Intent> launcherAdd = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -66,7 +71,28 @@ public class activity_index extends AppCompatActivity {
 
                 billsList.add(position, new Bills(direction, type, account, note, amount, time));
 
+                if(getString(R.string.createbill_bt_income).equals(direction)){
+                    accounts.income += amount;
+                }
+                else{
+                    accounts.expense -= amount;
+                }
+                accounts.networth += amount;
+
+                if(getString(R.string.accounttype_cash).equals(account)){
+                    accounts.cash += amount;
+                }
+                else if(getString(R.string.accounttype_wechat).equals(account)){
+                    accounts.wechat += amount;
+                }
+                else{
+                    accounts.alipay += amount;
+                }
+
+                dataBank.saveBills();
+                dataBank.saveAccounts();
                 recyclerViewAdapter.notifyItemInserted(position);
+                refreshDisplay();
             }
         }
     });
@@ -78,13 +104,62 @@ public class activity_index extends AppCompatActivity {
             int resultCode = result.getResultCode();
             if(resultCode == RESULT_CODE_TOUCH) {
                 if (null == data) return;
-                String direction = data.getStringExtra("direction");
-                String type = data.getStringExtra("type");
-                String account = data.getStringExtra("account");
-                String note = data.getStringExtra("note");
-                double amount = data.getDoubleExtra("amount", 0);
-                String time = data.getStringExtra("time");
                 int position = data.getIntExtra("position", billsList.size());
+
+                String type = data.getStringExtra("type");
+                String note = data.getStringExtra("note");
+                String time = data.getStringExtra("time");
+
+                String oDirection = billsList.get(position).getBillDirection();
+                String direction = data.getStringExtra("direction");
+                String oAccount = billsList.get(position).getBillAccount();
+                String account = data.getStringExtra("account");
+                double oAmount = billsList.get(position).getBillAmount();
+                double amount = data.getDoubleExtra("amount", 0);
+
+                if((oDirection.equals(direction)) == false){
+                    if((getString(R.string.createbill_bt_income)).equals(direction)){
+                        accounts.income += amount;
+                        accounts.expense += oAmount;
+                        accounts.networth += amount;
+                        accounts.networth -= oAmount;
+                    }
+                    else{
+                        accounts.income -= oAmount;
+                        accounts.expense -= amount;
+                        accounts.networth -= oAmount;
+                        accounts.networth += amount;
+                    }
+                }
+                if((oAccount.equals(account)) == false){
+                    if((getString(R.string.accounttype_cash)).equals(oAccount)){
+                        accounts.cash -= oAmount;
+                        if((getString(R.string.accounttype_wechat)).equals(account)){
+                            accounts.wechat += amount;
+                        }
+                        else{
+                            accounts.alipay += amount;
+                        }
+                    }
+                    else if((getString(R.string.accounttype_wechat)).equals(oAccount)){
+                        accounts.wechat -= oAmount;
+                        if((getString(R.string.accounttype_cash)).equals(account)){
+                            accounts.cash += amount;
+                        }
+                        else{
+                            accounts.alipay += amount;
+                        }
+                    }
+                    else{
+                        accounts.alipay -= oAmount;
+                        if((getString(R.string.accounttype_cash)).equals(account)){
+                            accounts.cash += amount;
+                        }
+                        else{
+                            accounts.wechat += amount;
+                        }
+                    }
+                }
 
                 billsList.get(position).setBillDirection(direction);
                 billsList.get(position).setBillType(type);
@@ -92,8 +167,10 @@ public class activity_index extends AppCompatActivity {
                 billsList.get(position).setBillNote(note);
                 billsList.get(position).setBillAmount(amount);
                 billsList.get(position).setBillTime(time);
-
+                dataBank.saveBills();
+                dataBank.saveAccounts();
                 recyclerViewAdapter.notifyItemChanged(position);
+                refreshDisplay();
             }
         }
     });
@@ -115,18 +192,49 @@ public class activity_index extends AppCompatActivity {
             }
         }
     });
+
+    void removeItem(int position){
+        String account = billsList.get(position).getBillAccount();
+        double amount = billsList.get(position).getBillAmount();
+
+        if(amount > 0){
+            accounts.income -= amount;
+        }
+        else{
+            accounts.expense += amount;
+        }
+        accounts.networth -= amount;
+
+        if((getString(R.string.accounttype_cash)).equals(account)){
+            accounts.cash -= amount;
+        }
+        else if((getString(R.string.accounttype_wechat)).equals(account)){
+            accounts.wechat -= amount;
+        }
+        else{
+            accounts.alipay -= amount;
+        }
+
+        billsList.remove(position);
+        dataBank.saveBills();
+        dataBank.saveAccounts();
+        recyclerViewAdapter.notifyItemRemoved(position);
+        refreshDisplay();
+    }
+
     //=====================================================初始化和onCreate=====================================================
     public void initData(){
         dataBank = new DataBank(activity_index.this);
+        accounts = new Accounts(0,0,0,0,0,0);
         billsList = dataBank.loadBills();
         //accounts = dataBank.loadAccounts();
+    }
 
-        /*
-        billsList = new ArrayList<Bills>();
-        billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
-        billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
-        billsList.add(new Bills("e","e","e","e",1.23,2022,1,1));
-         */
+    public void refreshDisplay(){
+        index_tv_networth.setText(accounts.networth+"");
+        index_tv_income.setText(accounts.income+"");
+        index_tv_expense.setText(accounts.expense+"");
+        dataBank.saveAccounts();
     }
 
     @Override
@@ -140,6 +248,11 @@ public class activity_index extends AppCompatActivity {
         index_iv_menu = findViewById(R.id.index_iv_menu);
         index_iv_share = findViewById(R.id.index_iv_share);
         index_iv_create = findViewById(R.id.index_iv_create);
+        index_tv_networth = findViewById(R.id.index_tv_networth);
+        index_tv_income = findViewById(R.id.index_tv_income);
+        index_tv_expense = findViewById(R.id.index_tv_expense);
+
+        refreshDisplay();
 
         RecyclerView mainRecyclerView = findViewById(R.id.index_rv_main);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -310,8 +423,7 @@ public class activity_index extends AppCompatActivity {
                 Intent intent;
                 switch (menuItem.getItemId()){
                     case LIST_REMOVE:
-                        billsList.remove(position);
-                        MyRecyclerViewAdapter.this.notifyItemRemoved(position);
+                        removeItem(position);
                         break;
                     case LIST_DETAIL:
                         intent = new Intent(activity_index.this, activity_detail.class);
