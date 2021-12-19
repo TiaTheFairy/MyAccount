@@ -257,7 +257,7 @@ public class activity_createBill extends AppCompatActivity {
 
         }
 
-        if(amountString.length() > 7 && view.getId() != R.id.create_key_delete){
+        if(amountString.length() > 6 && view.getId() != R.id.create_key_delete){
             Toast.makeText(activity_createBill.this, R.string.createbill_toast_long, Toast.LENGTH_SHORT).show();
             return;
         }

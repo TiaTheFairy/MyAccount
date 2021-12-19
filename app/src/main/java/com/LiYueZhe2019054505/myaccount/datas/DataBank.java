@@ -12,7 +12,6 @@ public class DataBank {
     public static final String DATA_BILLS = "databills";
     private final Context context;
     List<Bills> billsList;
-    Accounts accounts;
 
     public DataBank(Context context){
         this.context = context;

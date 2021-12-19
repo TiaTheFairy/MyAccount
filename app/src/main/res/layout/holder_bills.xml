@@ -7,27 +7,48 @@
 
     <ImageView
         android:id="@+id/bill_iv_type"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="15dp"
+        android:layout_centerVertical="true"
         android:src="@drawable/bill_default" />
 
-    <TextView
-        android:id="@+id/bill_tv_type"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/bill_ll_middle"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="5dp"
         android:layout_toEndOf="@id/bill_iv_type"
-        android:text="@string/billtype_default"
-        android:textSize="26sp" />
+        android:orientation="vertical"
+        android:layout_marginEnd="5dp">
+
+        <TextView
+            android:id="@+id/bill_tv_type"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@id/bill_iv_type"
+            android:text="@string/billtype_default"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/bill_tv_note"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bill_tv_type"
+            android:layout_toEndOf="@id/bill_iv_type"
+            android:text="@string/createbill_bt_note"
+            android:singleLine="true"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/bill_tv_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/bill_tv_type"
+        android:layout_toEndOf="@id/bill_ll_middle"
         android:text="@string/accounttype_cash"
         android:textSize="15sp" />
 

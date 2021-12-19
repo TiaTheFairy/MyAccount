@@ -66,25 +66,6 @@ public class activity_index extends AppCompatActivity {
                 int position = data.getIntExtra("position", billsList.size());
 
                 billsList.add(position, new Bills(direction, type, account, note, amount, time));
-
-                if(getString(R.string.createbill_bt_income).equals(direction)){
-                    accounts.income += amount;
-                }
-                else{
-                    accounts.expense -= amount;
-                }
-                accounts.networth += amount;
-
-                if(getString(R.string.accounttype_cash).equals(account)){
-                    accounts.cash += amount;
-                }
-                else if(getString(R.string.accounttype_wechat).equals(account)){
-                    accounts.wechat += amount;
-                }
-                else{
-                    accounts.alipay += amount;
-                }
-
                 dataBank.saveBills();
                 recyclerViewAdapter.notifyItemInserted(position);
                 refreshDisplay();
@@ -104,57 +85,9 @@ public class activity_index extends AppCompatActivity {
                 String type = data.getStringExtra("type");
                 String note = data.getStringExtra("note");
                 String time = data.getStringExtra("time");
-
-                String oDirection = billsList.get(position).getBillDirection();
                 String direction = data.getStringExtra("direction");
-                String oAccount = billsList.get(position).getBillAccount();
                 String account = data.getStringExtra("account");
-                double oAmount = billsList.get(position).getBillAmount();
                 double amount = data.getDoubleExtra("amount", 0);
-
-                if((oDirection.equals(direction)) == false){
-                    if((getString(R.string.createbill_bt_income)).equals(direction)){
-                        accounts.income += amount;
-                        accounts.expense += oAmount;
-                        accounts.networth += amount;
-                        accounts.networth -= oAmount;
-                    }
-                    else{
-                        accounts.income -= oAmount;
-                        accounts.expense -= amount;
-                        accounts.networth -= oAmount;
-                        accounts.networth += amount;
-                    }
-                }
-                if((oAccount.equals(account)) == false){
-                    if((getString(R.string.accounttype_cash)).equals(oAccount)){
-                        accounts.cash -= oAmount;
-                        if((getString(R.string.accounttype_wechat)).equals(account)){
-                            accounts.wechat += amount;
-                        }
-                        else{
-                            accounts.alipay += amount;
-                        }
-                    }
-                    else if((getString(R.string.accounttype_wechat)).equals(oAccount)){
-                        accounts.wechat -= oAmount;
-                        if((getString(R.string.accounttype_cash)).equals(account)){
-                            accounts.cash += amount;
-                        }
-                        else{
-                            accounts.alipay += amount;
-                        }
-                    }
-                    else{
-                        accounts.alipay -= oAmount;
-                        if((getString(R.string.accounttype_cash)).equals(account)){
-                            accounts.cash += amount;
-                        }
-                        else{
-                            accounts.wechat += amount;
-                        }
-                    }
-                }
 
                 billsList.get(position).setBillDirection(direction);
                 billsList.get(position).setBillType(type);
@@ -189,27 +122,6 @@ public class activity_index extends AppCompatActivity {
     });
 
     void removeItem(int position){
-        String account = billsList.get(position).getBillAccount();
-        double amount = billsList.get(position).getBillAmount();
-
-        if(amount > 0){
-            accounts.income -= amount;
-        }
-        else{
-            accounts.expense += amount;
-        }
-        accounts.networth -= amount;
-
-        if((getString(R.string.accounttype_cash)).equals(account)){
-            accounts.cash -= amount;
-        }
-        else if((getString(R.string.accounttype_wechat)).equals(account)){
-            accounts.wechat -= amount;
-        }
-        else{
-            accounts.alipay -= amount;
-        }
-
         billsList.remove(position);
         dataBank.saveBills();
         recyclerViewAdapter.notifyItemRemoved(position);
@@ -278,11 +190,9 @@ public class activity_index extends AppCompatActivity {
         index_tv_expense.setText(accounts.expense + "");
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(0x80000000, 0x80000000);
         setContentView(R.layout.layout_index);
 
         initData();
@@ -431,6 +341,7 @@ public class activity_index extends AppCompatActivity {
             }
 
             holder.getBillType().setText(billsList.get(position).getBillType());
+            holder.getBillNote().setText(billsList.get(position).getBillNote());
             holder.getBillAccount().setText(billsList.get(position).getBillAccount());
             String billAmount = billsList.get(position).getBillAmount() + "";
             if(billAmount.length() - billAmount.indexOf(".") == 2){
@@ -452,6 +363,7 @@ public class activity_index extends AppCompatActivity {
 
             private final ImageView billImage;
             private final TextView billType;
+            private final TextView billNote;
             private final TextView billAccount;
             private final TextView billAmount;
 
@@ -460,6 +372,7 @@ public class activity_index extends AppCompatActivity {
 
                 this.billImage = itemView.findViewById(R.id.bill_iv_type);
                 this.billType = itemView.findViewById(R.id.bill_tv_type);
+                this.billNote = itemView.findViewById(R.id.bill_tv_note);
                 this.billAccount = itemView.findViewById(R.id.bill_tv_account);
                 this.billAmount = itemView.findViewById(R.id.bill_tv_amount);
 
@@ -473,6 +386,8 @@ public class activity_index extends AppCompatActivity {
             public TextView getBillType() {
                 return billType;
             }
+
+            public TextView getBillNote() {return billNote;}
 
             public TextView getBillAccount() {
                 return billAccount;

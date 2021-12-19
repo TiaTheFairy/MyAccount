@@ -1,7 +1,5 @@
 package com.LiYueZhe2019054505.myaccount.datas;
 
-import java.io.Serializable;
-
 public class Accounts {
     public double networth;
     public double income;

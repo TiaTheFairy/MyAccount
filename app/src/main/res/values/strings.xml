@@ -82,10 +82,6 @@
     <string name="accounts_tv_cash">现金：</string>
     <string name="accounts_tv_wechat">微信：</string>
     <string name="accounts_tv_alipay">支付宝：</string>
-    <string name="accounts_tv_editing">正在编辑：</string>
-    <string name="accounts_tv_save">保存</string>
-    <string name="accounts_tv_undo">撤销</string>
-    <string name="accounts_toast_long">金额字符不能超过8位</string>
 
     <string name="billtype_default">其他</string>
     <string name="billtype_food">吃喝饮食</string>
