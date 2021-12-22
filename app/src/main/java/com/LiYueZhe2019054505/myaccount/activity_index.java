@@ -65,7 +65,7 @@ public class activity_index extends AppCompatActivity {
                 String time = data.getStringExtra("time");
                 int position = data.getIntExtra("position", billsList.size());
 
-                billsList.add(position, new Bills(direction, type, account, note, amount, time));
+                billsList.add(0, new Bills(direction, type, account, note, amount, time));
                 dataBank.saveBills();
                 recyclerViewAdapter.notifyItemInserted(position);
                 refreshDisplay();
