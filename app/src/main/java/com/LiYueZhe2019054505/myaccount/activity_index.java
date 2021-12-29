@@ -67,7 +67,7 @@ public class activity_index extends AppCompatActivity {
 
                 billsList.add(0, new Bills(direction, type, account, note, amount, time));
                 dataBank.saveBills();
-                recyclerViewAdapter.notifyItemInserted(position);
+                recyclerViewAdapter.notifyItemInserted(0);
                 refreshDisplay();
             }
         }
